@@ -1,0 +1,94 @@
+.burger {
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: transparent;
+  border: none;
+  position: relative;
+  width: 1.2rem;
+  height: 1rem;
+}
+
+.line {
+  background-color: var(--text);
+  height: 0.1rem;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+}
+.burgerActive {
+  cursor: pointer;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: transparent;
+  border: none;
+  position: relative;
+  width: 1.2rem;
+  height: 1rem;
+}
+.burgerActive span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burgerActive span:nth-child(2) {
+  opacity: 0;
+}
+
+.burgerActive span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.links {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+  justify-content: flex-end;
+  font-size: 1rem;
+  align-items: center;
+}
+
+.responsiveMenu{
+  position: absolute;
+  left: 0;
+  top: 5rem;
+  background-color: var(--bg);
+  width: 100%;
+  height: calc(100vh - 5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  font-size: 2rem;
+  z-index: 1000;
+}
+
+@media screen and (max-width: 1280px ) {
+  .links{
+    font-size: 0.8rem;
+    gap: 0.8rem
+  }
+}
+@media screen and (max-width: 1024px) {
+
+}
+@media screen and (max-width: 768px) {
+
+  .links{
+    font-size: 0.7rem;
+    gap: 0.6rem
+  }
+}
+@media screen and (max-width: 640px) {
+  .links {
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  .link{
+    display: none;
+  }
+  .burger {
+    display: flex;
+  }
+}

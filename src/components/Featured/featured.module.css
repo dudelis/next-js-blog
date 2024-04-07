@@ -1,0 +1,81 @@
+.container {
+  margin-top: 2rem;
+}
+
+.title {
+  font-size: 4rem;
+}
+
+.post {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+}
+
+.image {
+  object-fit: cover;
+}
+.imageContainer {
+  flex: 1;
+  height: 30rem;
+  position: relative;
+}
+.textContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.postTitle{
+  font-size: 1.5rem;
+}
+.postDescription{
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--softTextColor);
+}
+
+.readMoreButton{
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 0.4rem;
+  width: max-content;
+}
+
+@media screen and (max-width: 1280px) {
+  .title {
+    font-size: 3.5rem;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .title {
+    font-size: 3rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+}
+@media screen and (max-width: 640px) {
+  .title {
+    font-size: 2rem;
+  }
+  .post {
+    margin-top: 2rem;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: center;
+  }
+  .imageContainer {
+    flex: 1;
+    height: 500px;
+    position:relative;
+    width: 100vh;
+
+  }
+}
