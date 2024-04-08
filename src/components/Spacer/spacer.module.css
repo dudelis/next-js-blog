@@ -1,0 +1,29 @@
+.spacer {
+ padding-top: 4rem; 
+}
+
+@media screen and (max-width: 1536px ) {
+  .spacer {
+    padding-top: 4rem;
+  }  
+}
+@media screen and (max-width: 1280px ) {
+  .spacer {
+    padding-top: 3.5rem;
+  }  
+}
+@media screen and (max-width: 1024px) {
+  .spacer {
+    padding-top: 3rem;
+  }  
+}
+@media screen and (max-width: 768px) {
+  .spacer {
+    padding-top: 2.5rem;
+  }  
+}
+@media screen and (max-width: 640px) {
+  .spacer {
+    padding-top: 2rem;
+  }  
+}

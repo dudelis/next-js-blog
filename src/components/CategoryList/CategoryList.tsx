@@ -2,6 +2,7 @@ import * as React from 'react';
 import styles from './categorylist.module.css'
 import Link from 'next/link';
 import Image from 'next/image';
+import { Spacer } from '../Spacer/Spacer';
 
 export type TCategory = {
   name: string,
@@ -32,6 +33,7 @@ const categories: TCategory[] = [
 export default function CategoryList(props: TCategoryListProps) {
   return (
     <div className={styles.container}>
+      <Spacer/>
       <h2 className={styles.title}>Popular Categories</h2>
       <div className={styles.categories}>
         {categories.map((item, index) => (
