@@ -8,41 +8,37 @@ export type TCategory = {
   color: string,
   imageUrl: string
 }
-export type TCategoryListProps = {
-  categories: TCategory[]
-}
+export type TCategoryListProps = {}
+//TODO: add the external DB for loading the data.
+const categories: TCategory[] = [
 
-const categoryListProps: TCategoryListProps = {
-  categories: [
-    {
-      name: "Power Platform",
-      color: "pink",
-      imageUrl: "/style.png"
-    },
-    {
-      name: "Next JS",
-      color: "grey",
-      imageUrl: "/fashion.png"
-    },
-    {
-      name: "DevOps",
-      color: "blue",
-      imageUrl: "/food.png"
-    }
-  ]
-}
-
+  {
+    name: "Power Platform",
+    color: "pink",
+    imageUrl: "/style.png"
+  },
+  {
+    name: "Next JS",
+    color: "grey",
+    imageUrl: "/fashion.png"
+  },
+  {
+    name: "DevOps",
+    color: "blue",
+    imageUrl: "/food.png"
+  }
+]
 
 export default function CategoryList(props: TCategoryListProps) {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Popular Categories</h2>
       <div className={styles.categories}>
-        {categoryListProps.categories.map((item, index) => (
+        {categories.map((item, index) => (
           <Link key={index} href={`/blog?cat=${item.name.toLowerCase()}`}
             className={`${styles.category} ${styles[item.name.toLocaleLowerCase()]}`}
-            style={{background: item.color}}
-            >
+            style={{ background: item.color }}
+          >
             <Image src={item.imageUrl} alt="" width={32} height={32} className={styles.image} />
             {item.name}
           </Link>

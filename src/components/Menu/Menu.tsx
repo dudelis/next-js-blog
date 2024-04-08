@@ -8,7 +8,7 @@ export interface IMenuProps {
 export default function Menu (props: IMenuProps) {
   return (
     <div className={styles.container}>
-      
+      MENU
     </div>
   );
 }
