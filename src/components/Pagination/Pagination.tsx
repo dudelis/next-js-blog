@@ -7,7 +7,8 @@ export interface IPaginationProps {
 export default function Pagination (props: IPaginationProps) {
   return (
     <div className={styles.container}>
-      Pagination
+      <button className={styles.button}>Previous</button>
+      <button className={styles.button}>Next</button>
     </div>
   );
 }

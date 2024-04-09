@@ -19,7 +19,7 @@ export default function Home() {
       </div>
       <div className={styles.rightContainer}>
         <Menu />
-        <Spacer />
+        <Spacer/>
         <MenuCategories />
       </div>
     </div>

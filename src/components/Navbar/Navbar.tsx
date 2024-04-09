@@ -23,7 +23,7 @@ export default function Navbar(props: INavbarProps) {
         </div>
       </Link>
       <NavLinks />
-    </div>
+    </div>    
   );
 }
 
