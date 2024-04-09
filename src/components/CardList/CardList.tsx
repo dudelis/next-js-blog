@@ -54,8 +54,7 @@ export default function CardList(props: ICardListProps) {
             </div>
             <div className={styles.textContainer}>
               <div className={styles.detail}>
-                <span className={styles.date}>{item.publishedDate}</span>
-                -
+                <span className={styles.date}>{item.publishedDate} - </span>
                 <span className={styles.category}>{item.category}</span>
               </div>
               <h3 className={styles.postTitle}>{item.title}</h3>

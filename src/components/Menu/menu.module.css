@@ -1,5 +1,5 @@
 .container {
-  flex: 2;
+  
 }
 
 .title {
@@ -9,14 +9,22 @@
 .items {
   display: flex;
   flex-direction: column;
-  gap: 20px; 
+  gap: 2.5rem;
+  align-items: center;
 }
 
 .item {
-  height: 5rem;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1rem;
+}
+
+.category{
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  color: white;
+  font-size: 0.8rem;
+  width: max-content;
 }
 
 .imageContainer {
@@ -26,8 +34,20 @@
 }
 .image {
   border-radius: 50%;
+  border: 0.2rem solid lightgray;
+  object-fit: cover;
 }
 .textContainer {
-  position: relative;
   flex: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.postTitle {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--softTextColor);
+}
+.date {
+  color: gray;
 }

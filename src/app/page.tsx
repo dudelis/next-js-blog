@@ -6,6 +6,7 @@ import Link from "next/link";
 import styles from './homepage.module.css';
 import CardList from "@/components/CardList/CardList";
 import { Spacer } from "@/components/Spacer/Spacer";
+import MenuCategories from "@/components/MenuCategories/MenuCategories";
 
 export default function Home() {
   return <div>
@@ -13,8 +14,14 @@ export default function Home() {
     <CategoryList />
     <Spacer />
     <div className={styles.container}>
-      <CardList />
-      <Menu />
+      <div className={styles.leftContainer}>
+        <CardList />
+      </div>
+      <div className={styles.rightContainer}>
+        <Menu />
+        <Spacer />
+        <MenuCategories />
+      </div>
     </div>
   </div>;
 }

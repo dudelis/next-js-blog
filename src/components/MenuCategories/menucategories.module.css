@@ -1,0 +1,20 @@
+.container {
+  
+}
+
+.title {
+  margin-bottom: 3rem;
+}
+
+.items {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.item {
+  width: max-content;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+
+}

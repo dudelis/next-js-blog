@@ -9,29 +9,37 @@ export interface IMenuProps {
 
 export type TMenuItem = {
   category: string;
+  categoryColor: string;
   title: string;
   publishedDate: string;
   link: string;
+  user: string;
 }
 
 const items: TMenuItem[] = [
   {
     category: "Power Platform",
+    categoryColor: "lightgrey",
     title: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
     publishedDate: formatDate(new Date()),
-    link: "powerplatform"
+    link: "powerplatform",
+    user: "Darth Sidious"
   },
   {
     category: "DevOps",
+    categoryColor: "lightblue",
     title: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
     publishedDate: formatDate(new Date()),
-    link: "devops"
+    link: "devops",
+    user: "Darth Sidious"
   },
   {
     category: "Next JS",
+    categoryColor: "lightgreen",
     title: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
     publishedDate: formatDate(new Date()),
-    link: "/nextjs"
+    link: "/nextjs",
+    user: "Darth Sidious"
   }
 ]
 
@@ -46,8 +54,12 @@ export default function Menu (props: IMenuProps) {
               <Image src="/p1.jpeg" alt="" fill className={styles.image}/>
             </div>
             <div className={styles.textContainer}>
-              <span></span>
-              <h3>Lorem ipsum dolor sit amet consectetur</h3>
+              <span className={styles.category} style={{backgroundColor: item.categoryColor}}>{item.category}</span>
+              <h3 className={styles.postTitle}>Lorem ipsum dolor sit amet consectetur</h3>
+              <div className={styles.detail}>
+                <span className={styles.username}>{item.user}</span>
+                <span className={styles.date}> - {item.publishedDate}</span>
+              </div>
             </div>
           </Link>
         ))}
@@ -56,4 +68,5 @@ export default function Menu (props: IMenuProps) {
     </div>
   );
 }
+
 

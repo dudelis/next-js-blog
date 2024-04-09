@@ -15,17 +15,17 @@ const categories: TCategory[] = [
 
   {
     name: "Power Platform",
-    color: "pink",
+    color: "lightgrey",
     imageUrl: "/style.png"
   },
   {
     name: "Next JS",
-    color: "grey",
+    color: "lightblue",
     imageUrl: "/fashion.png"
   },
   {
     name: "DevOps",
-    color: "blue",
+    color: "lightgreen",
     imageUrl: "/food.png"
   }
 ]
