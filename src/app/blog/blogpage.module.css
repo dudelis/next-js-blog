@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+  background-color: coral;
+  color: white;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.content{
+  display: flex;
+  gap: 2rem;
+}
+
+
+.leftContainer {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.rightContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 1024px) {
+  .rightContainer {
+    display: none;
+  }
+}
