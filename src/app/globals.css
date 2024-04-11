@@ -7,6 +7,10 @@
   --text: black;
   --softBg: #f0f0f0;
   --softTextColor: #626262;
+  --google: #db4437;
+  --github: #333;
+  --facebook: #3b5998;
+  --microsoft: #00a1f1;
 }
 
 * {
