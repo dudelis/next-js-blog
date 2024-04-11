@@ -68,3 +68,64 @@
 .rightMenu{
   flex: 2;
 }
+
+@media screen and (max-width: 1536px) {
+  .container {
+    gap: 1rem;
+  }
+  .infoContainer {
+    gap: 1rem;
+  }
+  .textContainer {
+    gap: 1rem;
+  }
+  .title {
+    font-size: 2.5rem;
+  }
+  .userImageContainer {
+    height: 3rem;
+    width: 3rem;
+  }
+  .userTextContainer {
+    gap: 0.1rem;
+  }
+  .imageContainer {
+    height: 20rem;
+  }
+  .description {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .title {
+    font-size: 2rem;
+  }
+  .infoContainer {
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .userImageContainer {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+  .imageContainer {
+    height: 15rem;
+  }
+  .description {
+    font-size: 1rem;
+  }
+  .rightMenu {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .infoContainer {
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .imageContainer {
+    min-width: 300px;
+  }
+}
