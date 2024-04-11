@@ -1,0 +1,72 @@
+.comments{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--borderColor);
+}
+
+.title{
+  color: var(--softTextColor);
+}
+.commentInput{
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.input{
+  flex: 6;
+  padding: 1rem;
+  border: 1px solid var(--borderColor);
+  border-radius: 0.1rem;
+  height: 5rem;
+}
+
+.button{
+  flex: 1;
+  background-color: teal;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  padding: 1rem 1rem;
+  font-weight: bold;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--borderColor);
+}
+.comment p{
+   color: var(--softTextColor);
+   font-weight: 300;
+}
+
+.user {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.userImageContainer{
+  position: relative;
+  height: 3rem;
+  width: 3rem;
+}
+.userImage{
+  border-radius: 50%;
+  object-fit: cover;
+}
+.userTextContainer{
+  display: flex;
+  gap: 0.1rem;
+  flex-direction: column;
+  color: var(--softTextColor);
+  font-size: 0.8rem;
+}

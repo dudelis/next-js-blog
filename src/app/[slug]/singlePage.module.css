@@ -4,7 +4,6 @@
   flex-direction: column;
 }
 
-
 .infoContainer {
   display: flex;
   gap: 3rem;
@@ -21,27 +20,24 @@
 
 .title {
   font-size: 3.5rem;
-  flex:1;
+  flex: 1;
 }
-.user{
+.user {
   flex: 1;
   display: flex;
   gap: 1rem;
   align-items: center;
-
 }
 
 .imageContainer {
   flex: 1;
   position: relative;
   height: 30rem;
-  
 }
-.image{
+.image {
   object-fit: cover;
   border-radius: 5px;
 }
-
 
 .userImageContainer {
   position: relative;
@@ -52,9 +48,23 @@
   border-radius: 50%;
   object-fit: cover;
 }
-.userTextContainer{
+.userTextContainer {
   display: flex;
   gap: 0.1rem;
   flex-direction: column;
-  color: var(--softTextColor)
+  color: var(--softTextColor);
+}
+.content{
+  display: flex;
+  gap: 3rem;
+}
+.post {
+  flex: 5
+}
+.description{
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+.rightMenu{
+  flex: 2;
 }
