@@ -1,0 +1,52 @@
+.container{
+
+}
+.titleInput {
+  padding: 3rem;
+  font-size: 3rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+}
+
+.editor {
+  display: flex;
+  gap: 2rem;
+  height: 60rem;
+  position: relative;
+}
+
+.plusButton, .addButton {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--text);
+  border: 1px solid var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.addButtons{
+  display: flex;
+  gap: 1rem;
+  background: var(--bg);
+  position: absolute;
+  left: 3rem;
+  z-index: 1000;
+}
+
+.textArea {
+  width: 100%;
+}
+
+.publishButton {
+  padding: 0.7rem;
+  background-color: var(--text);
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+  border-radius: 0.2rem
+}

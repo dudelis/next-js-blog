@@ -8,7 +8,7 @@ export interface IAuthLinksProps {
 }
 
 export default function AuthLinks(props: IAuthLinksProps) {
-  const authenticated = false;
+  const authenticated = true;
   return <>
     {authenticated ? (
       <>
