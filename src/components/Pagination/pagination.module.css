@@ -6,9 +6,10 @@
 
 .button {
   padding: 1rem 1rem;
-  background-color: crimson;
+  background-color: var(--accentRed);
   color: white;
   font-size: 1rem;
   cursor: pointer;
   width: 7rem;
+  border: none;
 }

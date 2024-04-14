@@ -19,7 +19,7 @@ export default function Navbar(props: INavbarProps) {
       </div>
       <Link href="/">
         <div className={styles.logo}>
-          Dudelis Dev Blog
+          Code Musician Blog
         </div>
       </Link>
       <NavLinks />

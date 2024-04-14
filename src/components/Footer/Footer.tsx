@@ -11,8 +11,8 @@ export default function Footer(props: IFooterProps) {
     <footer className={styles.container}>
       <div className={styles.info}>
         <div className={styles.logoConainer}>
-          <Image src="/logo.png" alt="logo" width={100} height={100} />
-          <div className={styles.logoText}>Dudelis Dev Blog</div>
+          <Image src="/codemusicianlogo.png" alt="logo" width={100} height={100} />
+          <div className={styles.logoText}>Code Musician Blog</div>
         </div>
         <div className={styles.footerContent}>
           <p className={styles.description}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam tempora sapiente maiores inventore laboriosam culpa, suscipit necessitatibus culpa, magni amet deleniti ea laborum!</p>

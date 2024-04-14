@@ -3,14 +3,16 @@
 @tailwind utilities; */
 
 :root {
-  --bg: white;
-  --text: black;
-  --softBg: #f0f0f0;
-  --softTextColor: #626262;
+  --bg: #F4F2ED;
+  --text: #072134;
+  --softBg: #bcc8e6;
+  --softTextColor: #0D3E61;
   --google: #db4437;
   --github: #333;
   --facebook: #3b5998;
   --microsoft: #00a1f1;
+  --accentRed: #F86855;
+  --accentBlue: #0AA7B8;
 }
 
 * {
@@ -31,10 +33,10 @@ a {
 }
 
 .dark {
-  --bg: #0f172a;
-  --text: #ddd;
-  --softBg: #1f273a;
-  --softTextColor: #a6a6a6;
+  --bg: #072134;
+  --text: #F4F2ED;
+  --softBg: #0D3E61;
+  --softTextColor: #bcc8e6;
 
 }
 

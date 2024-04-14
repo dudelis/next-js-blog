@@ -43,7 +43,7 @@
 }
 
 .category {
-  color: crimson;
+  color: var(--accentRed);
   font-weight: 500;
 }
 .text{

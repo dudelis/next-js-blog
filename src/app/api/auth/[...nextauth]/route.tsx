@@ -1,10 +1,15 @@
-import NextAuth, { User } from "next-auth";
+import NextAuth from "next-auth";
 import GitHubProviders from "next-auth/providers/github";
 import GoogleProviders from "next-auth/providers/google";
 import FacebookProviders from "next-auth/providers/facebook";
-import { JWT } from "next-auth/jwt";
+import { PrismaAdapter } from "@auth/prisma-adapter"
+import { PrismaClient } from "@prisma/client"
+import { Adapter } from "next-auth/adapters";
 
-export default NextAuth({
+const prisma = new PrismaClient();
+
+const handler =  NextAuth({
+  adapter: PrismaAdapter(prisma) as Adapter,
   providers: [
     GitHubProviders({
       clientId: process.env.GITHUB_CLIENT_ID as string,
@@ -36,3 +41,4 @@ export default NextAuth({
   //   // },
 });
 
+export {handler as GET, handler as POST}
