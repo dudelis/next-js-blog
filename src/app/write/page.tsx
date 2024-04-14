@@ -1,11 +1,12 @@
 "use client"
 import * as React from 'react';
 import styles from './writePage.module.css';
-import Image from 'next/image';
 import { useState } from 'react';
 import "react-quill/dist/quill.bubble.css";
 import dynamic from "next/dynamic";
 import { FaImage, FaPlus, FaExternalLinkAlt,FaPhotoVideo  } from "react-icons/fa";
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -14,8 +15,15 @@ export interface IWritePageProps {
 }
 
 function WritePage(props: IWritePageProps) {
+
+  const { status} = useSession();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState('');
+
+  if (status === "loading") return <div className={styles.loading}>Loading...</div>
+  if (status === "authenticated") router.push("/");
+
   return (
     <div className={styles.container}>
       <input type="text" placeholder="Title" className={styles.titleInput} />
