@@ -2,18 +2,15 @@
 import * as React from 'react';
 import styles from './login.module.css';
 import { signIn, useSession } from 'next-auth/react';
-import { stat } from 'fs';
 import { useRouter } from 'next/navigation';
 
 export interface ILoginPageProps {
 }
 
 function LoginPage (props: ILoginPageProps) {
-
   const router = useRouter();
-
   const {data, status} = useSession();
-  console.log(data, status);
+  
   if (status === "loading") return <div className={styles.loading}>Loading...</div>
   if (status === "authenticated") router.push("/");
   return (
