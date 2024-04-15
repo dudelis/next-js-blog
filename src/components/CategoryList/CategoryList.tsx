@@ -3,51 +3,36 @@ import styles from './categorylist.module.css'
 import Link from 'next/link';
 import Image from 'next/image';
 import { Spacer } from '../Spacer/Spacer';
+import { Category } from '@prisma/client';
 
-export type TCategory = {
-  name: string,
-  color: string,
-  imageUrl: string
-}
+
 export type TCategoryListProps = {}
-//TODO: add the external DB for loading the data.
-const categories: TCategory[] = [
 
-  {
-    name: "Power Platform",
-    color: "lightgrey",
-    imageUrl: "/style.png"
-  },
-  {
-    name: "Next JS",
-    color: "lightblue",
-    imageUrl: "/fashion.png"
-  },
-  {
-    name: "DevOps",
-    color: "lightgreen",
-    imageUrl: "/food.png"
-  }
-]
+const getData = async () => {
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/categories`, {cache: "no-store"});
+  return response.json();
+}
 
-export default function CategoryList(props: TCategoryListProps) {
+const CategoryList = async (props: TCategoryListProps) => {
+  const data: Category[] = await getData();
   return (
     <div className={styles.container}>
       <Spacer/>
       <h2 className={styles.title}>Popular Categories</h2>
       <div className={styles.categories}>
-        {categories.map((item, index) => (
-          <Link key={index} href={`/blog?cat=${item.name.toLowerCase()}`}
-            className={`${styles.category} ${styles[item.name.toLocaleLowerCase()]}`}
-            style={{ background: item.color }}
+        {data.map((item, index) => (
+          <Link key={item.id} href={`/blog?cat=${item.slug.toLowerCase()}`}
+            className={styles.category} 
+            style={{ background: item.color as string }}
           >
-            <Image src={item.imageUrl} alt="" width={32} height={32} className={styles.image} />
-            {item.name}
+            <Image src={item.img as string} alt="" width={32} height={32} className={styles.image} />
+            {item.title}
           </Link>
         ))}
-
       </div>
     </div>
   );
 }
+
+export default CategoryList;
 

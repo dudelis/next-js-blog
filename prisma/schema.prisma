@@ -91,7 +91,8 @@ model Category {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   slug        String @unique
   title       String
-  img         String?  
+  img         String?
+  color       String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   posts       Post[]

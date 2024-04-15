@@ -4,45 +4,28 @@ import Pagination from '../Pagination/Pagination';
 import Image from 'next/image';
 import formatDate from '@/utility/date';
 import Link from 'next/link';
+import { Post } from '@prisma/client';
+import { Prisma } from '@prisma/client'
 
 export interface ICardListProps {
+  page: number;
 }
-export type TPost = {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  publishedDate: string;
-  imageUrl: string;
-}
-const posts: TPost[] = [
-  {
-    id: "1",
-    title: "1 Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, cum quibusdam. Aliquid amet quasi nemo incidunt, cumque cupiditate at molestiae officia libero itaque ex nihil, possimus doloribus quod reiciendis deserunt!",
-    category: "Power Platform",
-    publishedDate: formatDate(new Date()),
-    imageUrl: "/p1.jpeg"
-  },
-  {
-    id: "2",
-    title: "2 Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, cum quibusdam. Aliquid amet quasi nemo incidunt, cumque cupiditate at molestiae officia libero itaque ex nihil, possimus doloribus quod reiciendis deserunt!",
-    category: "Power Platform",
-    publishedDate: formatDate(new Date()),
-    imageUrl: "/p1.jpeg"
-  },
-  {
-    id: "3",
-    title: "3 Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, cum quibusdam. Aliquid amet quasi nemo incidunt, cumque cupiditate at molestiae officia libero itaque ex nihil, possimus doloribus quod reiciendis deserunt!",
-    category: "Power Platform",
-    publishedDate: formatDate(new Date()),
-    imageUrl: "/p1.jpeg"
-  }
-]
 
-export default function CardList(props: ICardListProps) {
+export type PostWithCategory = Prisma.PostGetPayload<{
+  include: { category: true }
+}>
+
+const getData = async (page: number) => {
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/posts?page=${page}`, {cache: "no-store"});
+  return response.json();
+}
+
+const CardList= async ({page}: ICardListProps) => {
+  const {posts, count, POST_PER_PAGE}: {posts: PostWithCategory[], count: number, POST_PER_PAGE: number} = await getData(page);
+
+  const hasNext = page * POST_PER_PAGE < count;
+  const hasPrevious = page-1 > 0;
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Recent Posts</h2>
@@ -50,22 +33,23 @@ export default function CardList(props: ICardListProps) {
         {posts.map((item) => (
           <div className={styles.post} key={item.id}>
             <div className={styles.imageContainer}>
-              <Image className={styles.image} src={item.imageUrl} alt={item.title} fill ></Image>
+              <Image className={styles.image} src={item.img as string} alt={item.title} fill ></Image>
             </div>
             <div className={styles.textContainer}>
               <div className={styles.detail}>
-                <span className={styles.date}>{item.publishedDate} - </span>
-                <span className={styles.category}>{item.category}</span>
+                <span className={styles.date}>{formatDate(item.createdAt)} - </span>
+                <span className={styles.category}>{item.category.title}</span>
               </div>
               <h3 className={styles.postTitle}>{item.title}</h3>
-              <p className={styles.text}>{item.description}</p>
-              <Link className={styles.link} href={`/posts/${item.id}`}>Read more</Link>
+              <p className={styles.text}>{item.content}</p>
+              <Link className={styles.link} href={`/posts/${item.slug}`}>Read more</Link>
             </div>
           </div>
         ))}
       </div>
-      <Pagination />
+      <Pagination page={page} hasNext={hasNext} hasPrevious={hasPrevious}  />
     </div>
   );
 }
 
+export default CardList;

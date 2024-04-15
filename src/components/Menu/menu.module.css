@@ -44,10 +44,14 @@
   gap: 0.5rem;
 }
 .postTitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--softTextColor);
 }
 .date {
   color: gray;
+  font-size: 0.8rem;
+}
+.username {
+  font-size: 0.8rem;
 }

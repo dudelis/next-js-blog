@@ -6,7 +6,12 @@ import CardList from "@/components/CardList/CardList";
 import { Spacer } from "@/components/Spacer/Spacer";
 import MenuCategories from "@/components/MenuCategories/MenuCategories";
 
-export default function Home() {
+export type THomePageProps = {
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+export default function Home(props: THomePageProps) {
+  const page = props.searchParams.page ? parseInt(props.searchParams.page as string) : 1;
   return (
     <div>
       <Featured />
@@ -14,7 +19,7 @@ export default function Home() {
       <Spacer />
       <div className={styles.container}>
         <div className={styles.leftContainer}>
-          <CardList />
+          <CardList page={page} />
         </div>
         <div className={styles.rightContainer}>
           <Menu />

@@ -3,6 +3,7 @@ import styles from './menu.module.css';
 import formatDate from '@/utility/date';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Category } from '@prisma/client';
 
 export interface IMenuProps {
 }
@@ -43,7 +44,13 @@ const items: TMenuItem[] = [
   }
 ]
 
-export default function Menu (props: IMenuProps) {
+const getData = async () => {
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/categories`);
+  return response.json();
+}
+
+export default async function Menu (props: IMenuProps) {
+  const categories: Category[] = await getData();
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Most popular</h2>
@@ -55,7 +62,7 @@ export default function Menu (props: IMenuProps) {
             </div>
             <div className={styles.textContainer}>
               <span className={styles.category} style={{backgroundColor: item.categoryColor}}>{item.category}</span>
-              <h3 className={styles.postTitle}>Lorem ipsum dolor sit amet consectetur</h3>
+              <h4 className={styles.postTitle}>Lorem ipsum dolor sit amet consectetur</h4>
               <div className={styles.detail}>
                 <span className={styles.username}>{item.user}</span>
                 <span className={styles.date}> - {item.publishedDate}</span>

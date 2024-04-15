@@ -8,7 +8,7 @@ export interface IFeaturedProps {
 export default function Featured(props: IFeaturedProps) {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}> Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+      <h1 className={styles.title}> This is my cup of coffee.</h1>
       <div className={styles.post}>
         <div className={styles.imageContainer}>
           <Image src="/p1.jpeg" alt="" fill className={styles.image}/>

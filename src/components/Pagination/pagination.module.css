@@ -13,3 +13,8 @@
   width: 7rem;
   border: none;
 }
+
+.button:disabled{
+  background-color: var(--softTextColor);
+  cursor: not-allowed;
+}
