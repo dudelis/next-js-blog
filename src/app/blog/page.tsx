@@ -9,16 +9,17 @@ export type TBlogPageProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 }
 
+
 const BlogPage: React.FC<TBlogPageProps> = ({searchParams}) => {
   const page = searchParams.page ? parseInt(searchParams.page as string) : 1;
-  const category = searchParams.category ? searchParams.category as string : '';
+  const category = searchParams.cat ? searchParams.cat as string : '';
   return (
     <div className={styles.container}>
       <Spacer />
       <h1 className={styles.title}>Category Blog</h1>
       <div className={styles.content}>
         <div className={styles.leftContainer}>
-          <CardList page={page} />
+          <CardList page={page} category={category} />
         </div>
         <div className={styles.rightContainer}>
           <Menu />

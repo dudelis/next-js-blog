@@ -9,19 +9,20 @@ import { Prisma } from '@prisma/client'
 
 export interface ICardListProps {
   page: number;
+  category?: string; 
 }
 
 export type PostWithCategory = Prisma.PostGetPayload<{
   include: { category: true }
 }>
 
-const getData = async (page: number) => {
-  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/posts?page=${page}`, {cache: "no-store"});
+const getData = async (page: number, category: string) => {
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/posts?page=${page}&cat=${category || ""}`, {cache: "no-store"});
   return response.json();
 }
 
-const CardList= async ({page}: ICardListProps) => {
-  const {posts, count, POST_PER_PAGE}: {posts: PostWithCategory[], count: number, POST_PER_PAGE: number} = await getData(page);
+const CardList= async ({page, category}: ICardListProps) => {
+  const {posts, count, POST_PER_PAGE}: {posts: PostWithCategory[], count: number, POST_PER_PAGE: number} = await getData(page, category || "" );
 
   const hasNext = page * POST_PER_PAGE < count;
   const hasPrevious = page-1 > 0;
