@@ -5,13 +5,11 @@
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 700;
   margin-bottom: 1rem;
   text-align: center;
-  background-color: coral;
-  color: white;
-  border-radius: 0.5rem;
+  color: var(--text-color);
   padding: 0.5rem 1rem;
 }
 

@@ -22,22 +22,7 @@ const handler =  NextAuth({
       clientId: process.env.FACEBOOK_CLIENT_ID as string,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string,
     }),
-  ],
-  //   // pages: {
-  //   //   signIn: "/auth/signin",
-  //   // },
-  //   // callbacks: {
-  //   //   async jwt(token: JWT, user: User) {
-  //   //     if (user) {
-  //   //       token.id = user.id;
-  //   //     }
-  //   //     return token;
-  //   //   },
-  //   //   async session(session, token) {
-  //   //     session.id = token.id;
-  //   //     return session;
-  //   //   },
-  //   // },
+  ]
 });
 
 export {handler as GET, handler as POST}

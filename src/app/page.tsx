@@ -14,6 +14,7 @@ export default function Home(props: THomePageProps) {
   const page = props.searchParams.page ? parseInt(props.searchParams.page as string) : 1;
   return (
     <div>
+      <h1 className={styles.title}> 404 - coffee not found.</h1>
       <Featured />
       <CategoryList />
       <Spacer />
