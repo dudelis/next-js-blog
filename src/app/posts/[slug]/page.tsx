@@ -50,7 +50,7 @@ async function SinglePage({ params }: { params: { slug: string } }) {
           </div>
           <Spacer />
           <div className={styles.tags}>
-            <Comments postslug={params} />
+            <Comments postslug={params.slug} />
           </div>
         </div>
         <div className={styles.rightMenu}>
