@@ -1,9 +1,11 @@
 import prisma from "@/utility/prismaClient";
 import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
   try {
+    const cat = req.nextUrl.searchParams.get("cat") || "";
+
     const categories = await prisma.category.findMany();
     const res = new NextResponse(JSON.stringify(categories), {status: 200});
     return res

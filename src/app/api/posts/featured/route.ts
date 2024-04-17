@@ -8,12 +8,17 @@ export async function GET(
   { params }: { params: { slug: string } }
 ) {
   try {
-    const category = await prisma.category.findUnique({
+    const post = await prisma.post.findUnique({
       where: {
         slug: params.slug,
       },
+      include: {
+        category: true,
+        user: true,
+      }
     });
-    return Response.json(category, { status: 200 });
+
+    return Response.json(post, { status: 200 });
   } catch (err) {
     return Response.json({ message: "Something went wrong" }, { status: 500 });
   }
