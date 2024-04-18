@@ -12,11 +12,12 @@ import formatDate from '@/utility/date';
 export type TCommentsProps = {
   postslug: string;
 }
-export type TCommentWithUser = Prisma.CommentsGetPayload<{include: {user: true}}>; 
+export type TCommentWithUser = Prisma.CommentsGetPayload<{include: {user: true}}>;
 
+const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(err => new Error(err));
 const Comments: React.FunctionComponent<TCommentsProps> = ({postslug}) => {
   const {status} = useSession();
-  const { data, error } = useSWR(`/api/posts/${postslug}/comments`, { refreshInterval: 1000 });
+  const { data, isLoading, error } = useSWR(`/api/posts/${postslug}/comments`, fetcher, { refreshInterval: 1000 });
   const comments = data as TCommentWithUser[];
   return (
     <div className={styles.container}>
@@ -29,11 +30,11 @@ const Comments: React.FunctionComponent<TCommentsProps> = ({postslug}) => {
       ) : (<Link href="/login">Login to post a comment</Link>)}
       <Spacer />
       <div className={styles.comments}>
-        {data && comments.map((comment) => (
+        {isLoading ? "loading" : comments.map((comment) => (
           <div className={styles.comment} key={comment.id}>
             <div className={styles.user}>
               <div className={styles.userImageContainer}>
-                <Image src="/p1.jpeg" alt="" className={styles.userImage} fill />
+                <Image src={comment.user.image ? comment.user.image : "/empty user.png"} alt="" className={styles.userImage} fill />
               </div>
               <div className={styles.userTextContainer}>
                 <span className={styles.userName}>{comment.user.name}</span>
