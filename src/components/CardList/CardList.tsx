@@ -4,7 +4,6 @@ import Pagination from '../Pagination/Pagination';
 import Image from 'next/image';
 import {formatDate} from '@/utility/utils';
 import Link from 'next/link';
-import { Post } from '@prisma/client';
 import { Prisma } from '@prisma/client'
 
 export interface ICardListProps {
@@ -41,7 +40,7 @@ const CardList= async ({page, category}: ICardListProps) => {
                 <span className={styles.category}>{item.category.title}</span>
               </div>
               <h3 className={styles.postTitle}>{item.title}</h3>
-              <p className={styles.text} dangerouslySetInnerHTML={{__html: `${item.content.substring(0,200)}...`}}></p>
+              <div className={styles.text} dangerouslySetInnerHTML={{__html: `${item.content.substring(0,200)}...`}}></div>
               <Link className={styles.link} href={`/posts/${item.slug}`}>Read more</Link>
             </div>
           </div>
