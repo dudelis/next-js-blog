@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styles from './menucategories.module.css';
-import formatDate from '@/utility/utils';
+import {formatDate} from '@/utility/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Spacer } from '../Spacer/Spacer';
