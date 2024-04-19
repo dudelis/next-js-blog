@@ -6,7 +6,7 @@ import Menu from '@/components/Menu/Menu';
 import MenuCategories from '@/components/MenuCategories/MenuCategories';
 import Comments from '@/components/Comments/Comments';
 import { Prisma } from '@prisma/client';
-import formatDate from '@/utility/date';
+import {formatDate} from '@/utility/utils';
 
 export type TSinglePostProps = {
   searchParams: { [key: string]: string | string[] | undefined };

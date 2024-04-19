@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styles from './menu.module.css';
-import formatDate from '@/utility/date';
+import {formatDate} from '@/utility/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Category } from '@prisma/client';

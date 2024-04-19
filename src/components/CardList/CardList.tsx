@@ -2,7 +2,7 @@ import * as React from 'react';
 import styles from './cardlist.module.css'
 import Pagination from '../Pagination/Pagination';
 import Image from 'next/image';
-import formatDate from '@/utility/date';
+import {formatDate} from '@/utility/utils';
 import Link from 'next/link';
 import { Post } from '@prisma/client';
 import { Prisma } from '@prisma/client'
@@ -23,7 +23,6 @@ const getData = async (page: number, category: string) => {
 
 const CardList= async ({page, category}: ICardListProps) => {
   const {posts, count, POST_PER_PAGE}: {posts: PostWithCategory[], count: number, POST_PER_PAGE: number} = await getData(page, category || "" );
-  console.log(posts);
   const hasNext = page * POST_PER_PAGE < count;
   const hasPrevious = page-1 > 0;
 

@@ -1,4 +1,4 @@
-function formatDate(date: Date) {
+export function formatDate(date: Date) {
   // Ensure input is a Date object
   if (!(date instanceof Date)) {
       date = new Date(date);
@@ -13,4 +13,12 @@ function formatDate(date: Date) {
   return `${day}.${month}.${year}`;
 }
 
-export default formatDate;
+
+export function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g,"")
+    .replace(/[\s_-]+/g,"-")
+    .replace(/^-+|-+$/g,"");    
+}

@@ -1,3 +1,4 @@
+import { getAuthSession } from "@/utility/auth";
 import prisma from "@/utility/prismaClient";
 import { Prisma } from '@prisma/client'
 
@@ -34,3 +35,27 @@ export const GET = async (req: NextRequest ) => {
     return res;
   }
 };
+
+//create a comment
+export async function POST(
+  req: Request
+) {
+  const session = await getAuthSession();
+  if (!session) {
+    return Response.json({ message: "Unauthorized" }, { status: 401 });
+  }
+  console
+  try {
+    const body = await req.json();
+    const post = await prisma.post.create({
+      data: {
+        ...body,
+        userEmail: session.user?.email,
+      },
+    });
+    return Response.json(post, { status: 201 });
+  } catch (err) {
+    console.log(err);
+    return Response.json({ message: "Something went wrong" }, { status: 500 });
+  }
+}
