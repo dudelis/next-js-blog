@@ -9,7 +9,6 @@ export const GET = async (req: NextRequest ) => {
 
   const POST_PER_PAGE = 3;
   try {
-
     const query: Prisma.PostFindManyArgs = {
       take: POST_PER_PAGE,
       skip: (parseInt(page) - 1) * POST_PER_PAGE,
@@ -28,7 +27,6 @@ export const GET = async (req: NextRequest ) => {
       prisma.post.findMany(query),
       prisma.post.count({where: query.where}),
     ]);
-    
     const res = new NextResponse(JSON.stringify({posts, count, POST_PER_PAGE}), {status: 200});
     return res
   } catch (err) {

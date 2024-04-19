@@ -23,7 +23,7 @@ const getData = async (page: number, category: string) => {
 
 const CardList= async ({page, category}: ICardListProps) => {
   const {posts, count, POST_PER_PAGE}: {posts: PostWithCategory[], count: number, POST_PER_PAGE: number} = await getData(page, category || "" );
-
+  console.log(posts);
   const hasNext = page * POST_PER_PAGE < count;
   const hasPrevious = page-1 > 0;
 
@@ -31,7 +31,7 @@ const CardList= async ({page, category}: ICardListProps) => {
     <div className={styles.container}>
       <h2 className={styles.title}>Recent Posts</h2>
       <div className={styles.posts}>
-        {posts.map((item) => (
+        {posts && posts.map((item) => (
           <div className={styles.post} key={item.id}>
             <div className={styles.imageContainer}>
               <Image className={styles.image} src={item.img as string} alt={item.title} fill ></Image>

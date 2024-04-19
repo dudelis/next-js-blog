@@ -36,26 +36,16 @@ export async function POST(
   if (!session) {
     return Response.json({ message: "Unauthorized" }, { status: 401 });
   }
-  const body = await req.json();
-  const comment = await prisma.comments.create({data:{
-    ...body, userEmail: session.user?.email
-  }});
+
   try {
-    const comments = await prisma.comments.findMany({
-      where: {
-        post: {
-          slug: params.slug,
-        },
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-      include: {
-        user: true,
+    const body = await req.json();
+    const comment = await prisma.comments.create({
+      data: {
+        ...body,
+        userEmail: session.user?.email,
       },
     });
-
-    return Response.json(comments, { status: 200 });
+    return Response.json(comment, { status: 201 });
   } catch (err) {
     return Response.json({ message: "Something went wrong" }, { status: 500 });
   }

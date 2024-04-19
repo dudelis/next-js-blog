@@ -30,7 +30,7 @@ async function SinglePage({ params }: { params: { slug: string } }) {
           <h1 className={styles.title}>{post.title}</h1>
           <div className={styles.user}>
             <div className={styles.userImageContainer}>
-              <Image src={post.user.image ? post.user.image : "/empty user.png"} alt="" layout="fill" className={styles.userImage} />
+              <Image src={typeof post.user?.image === "undefined" ? post.user.image : "/empty user.png"} alt="" layout="fill" className={styles.userImage} />
             </div>
             <div className={styles.userTextContainer}>
               <span className={styles.userName}>{post.user.name}</span>
