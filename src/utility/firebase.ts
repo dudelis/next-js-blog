@@ -7,7 +7,7 @@ import {
 } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE,
+  apiKey: process.env.FIREBASE_CLIENT_SECRET,
   authDomain: "nextjs-blog-app-420314.firebaseapp.com",
   projectId: "nextjs-blog-app-420314",
   storageBucket: "nextjs-blog-app-420314.appspot.com",
