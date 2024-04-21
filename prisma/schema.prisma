@@ -43,7 +43,8 @@ model Account {
   scope             String?
   id_token          String? @db.String
   session_state     String?
-  ext_expires_in     Int?
+  ext_expires_in    Int?
+  canpost           Boolean? @default(false)
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -112,6 +113,7 @@ model Post {
   updatedAt   DateTime @updatedAt
   user        User @relation(fields: [userEmail], references: [email])
   userEmail   String
+  isFeatured  Boolean @default(false)
   comments    Comments[]
 }
 

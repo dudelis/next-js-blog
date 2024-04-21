@@ -6,7 +6,10 @@ import Menu from '@/components/Menu/Menu';
 import MenuCategories from '@/components/MenuCategories/MenuCategories';
 import Comments from '@/components/Comments/Comments';
 import { Prisma } from '@prisma/client';
-import {formatDate} from '@/utility/utils';
+import { formatDate } from '@/utility/utils';
+import Content from '@/components/Content/content';
+
+
 
 export type TSinglePostProps = {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -43,11 +46,13 @@ async function SinglePage({ params }: { params: { slug: string } }) {
         </div>
       </div>
       <Spacer />
-      <div className={styles.content}>
+      <div suppressHydrationWarning className={styles.content}>
         <div className={styles.post}>
-          <div className={styles.description}>
-          <p dangerouslySetInnerHTML={{ __html: post.content }}></p>
-          </div>
+          
+          {/* <div className="text-md font-light">
+            {typeof window === "undefined" ? "Loading..." :<div className="prose text-foreground"  dangerouslySetInnerHTML={{ __html: post.content }}></div>}
+          </div> */}
+          <Content content={post.content} />
           <Spacer />
           <div className={styles.tags}>
             <Comments postslug={params.slug} />
