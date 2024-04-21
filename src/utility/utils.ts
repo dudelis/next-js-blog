@@ -22,3 +22,7 @@ export function slugify(text: string) {
     .replace(/[\s_-]+/g,"-")
     .replace(/^-+|-+$/g,"");    
 }
+
+export function stripHtml(text: string) {
+  return text.replace(/<[^>]*>?/gm, '');
+}

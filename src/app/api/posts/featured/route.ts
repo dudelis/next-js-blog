@@ -1,25 +1,18 @@
 import prisma from "@/utility/prismaClient";
-import { Category } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(
-  req: Request,
-  { params }: { params: { slug: string } }
-) {
+export async function GET() {
   try {
-    const post = await prisma.post.findUnique({
+    const post = await prisma.post.findFirst({
       where: {
-        slug: params.slug,
+        isFeatured: true
       },
-      include: {
-        category: true,
-        user: true,
+      orderBy: {
+        updatedAt: "desc"
       }
     });
-
-    return Response.json(post, { status: 200 });
+    return NextResponse.json(post, { status: 200 });
   } catch (err) {
-    return Response.json({ message: "Something went wrong" }, { status: 500 });
+    return NextResponse.json({ message: "Something went wrong" }, { status: 500 });
   }
 }
