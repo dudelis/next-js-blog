@@ -13,7 +13,7 @@ export default function Home(props: THomePageProps) {
   const page = props.searchParams.page ? parseInt(props.searchParams.page as string) : 1;
   return (
     <div>
-      <h1 className="text-6xl text-center"> 404 - coffee not found.</h1>
+      <h1 className="text-3xl md:text-4xl lg:text-6xl text-center"> 404 - coffee not found.</h1>
       <Featured />
       <CategoryList />
       <Spacer />
