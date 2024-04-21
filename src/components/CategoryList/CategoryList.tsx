@@ -15,7 +15,7 @@ const CategoryList = async (props: TCategoryListProps) => {
   const data: Category[] = await getData();
   return (
     <section className="flex flex-col">
-      <h2 className="mb-12 text-3xl font-bold">Popular Categories</h2>
+      <h2 className="mb-12 text-xl md:text-2xl lg:text-3xl font-bold">Popular Categories</h2>
       <div className="flex flex-wrap justify-between gap-8">
         {data.map((item, index) => (
           <Link key={item.id} href={`/blog?cat=${item.slug.toLowerCase()}`}

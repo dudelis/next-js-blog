@@ -14,12 +14,12 @@ export default function Home(props: THomePageProps) {
   return (
     <div>
       <Spacer />
-      <h1 className="text-3xl md:text-4xl lg:text-6xl text-center"> 404 - coffee not found.</h1>
+      <h1 className="text-3xl md:text-4xl lg:text-6xl text-center font-bold"> 404 - coffee not found.</h1>
       <Featured />
       <Spacer />
       <CategoryList />
       <Spacer />
-      <div className="flex gap-5">
+      <section className="flex gap-5">
         <div className="flex-[3]">
           <CardList page={page} />
         </div>
@@ -28,7 +28,7 @@ export default function Home(props: THomePageProps) {
           <Spacer />
           <MenuCategories />
         </div>
-      </div>
+      </section>
     </div>
   );
 }
