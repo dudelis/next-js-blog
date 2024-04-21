@@ -1,7 +1,6 @@
 import CategoryList from "@/components/CategoryList/CategoryList";
 import Featured from "@/components/Featured/Featured";
 import Menu from "@/components/Menu/Menu";
-import styles from './homepage.module.css';
 import CardList from "@/components/CardList/CardList";
 import { Spacer } from "@/components/Spacer/Spacer";
 import MenuCategories from "@/components/MenuCategories/MenuCategories";
@@ -14,15 +13,15 @@ export default function Home(props: THomePageProps) {
   const page = props.searchParams.page ? parseInt(props.searchParams.page as string) : 1;
   return (
     <div>
-      <h1 className={styles.title}> 404 - coffee not found.</h1>
+      <h1 className="text-6xl text-center"> 404 - coffee not found.</h1>
       <Featured />
       <CategoryList />
       <Spacer />
-      <div className={styles.container}>
-        <div className={styles.leftContainer}>
+      <div className="flex gap-5">
+        <div className="flex-[3]">
           <CardList page={page} />
         </div>
-        <div className={styles.rightContainer}>
+        <div className="hidden lg:flex flex-[1] flex-col">
           <Menu />
           <Spacer />
           <MenuCategories />

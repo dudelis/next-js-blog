@@ -31,8 +31,16 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <div className="container">
-                <div className="wrapper">
+              <div className="container min-h-full">
+                <div className="mx-auto 
+                  2xl:mx-w-screen-xl
+                  2xl:px-3
+                  xl:max-w-screen-lg
+                  lg:max-w-screen-md
+                  lg:px-2
+                  md:max-w-screen-sm
+                  md:px-1"                  
+                >
                   <Navbar />
                   {children}
                   <Spacer />
