@@ -4,6 +4,7 @@ import Menu from "@/components/Menu/Menu";
 import CardList from "@/components/CardList/CardList";
 import { Spacer } from "@/components/Spacer/Spacer";
 import MenuCategories from "@/components/MenuCategories/MenuCategories";
+import { getSortedPostsData } from "@/lib/posts";
 
 export type THomePageProps = {
   searchParams: { [key: string]: string | string[] | undefined };

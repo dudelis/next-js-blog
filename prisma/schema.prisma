@@ -26,7 +26,7 @@ model User {
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  posts       Post[]
+  // posts       Post[]
   comments    Comments[]
 }
  
@@ -89,33 +89,33 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model Category {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  slug        String @unique
-  title       String
-  img         String?
-  color       String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  posts       Post[]
-}
+// model Category {
+//   id          String   @id @default(auto()) @map("_id") @db.ObjectId
+//   slug        String @unique
+//   title       String
+//   img         String?
+//   color       String?
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @updatedAt
+//   posts       Post[]
+// }
 
-model Post {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  slug        String @unique
-  content     String
-  img         String?
-  views       Int @default(0)
-  category    Category @relation(fields: [categoryId], references: [id])
-  categoryId  String @db.ObjectId
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  user        User @relation(fields: [userEmail], references: [email])
-  userEmail   String
-  isFeatured  Boolean @default(false)
-  comments    Comments[]
-}
+// model Post {
+//   id          String   @id @default(auto()) @map("_id") @db.ObjectId
+//   title       String
+//   slug        String @unique
+//   content     String
+//   img         String?
+//   views       Int @default(0)
+//   category    Category @relation(fields: [categoryId], references: [id])
+//   categoryId  String @db.ObjectId
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @updatedAt
+//   user        User @relation(fields: [userEmail], references: [email])
+//   userEmail   String
+//   isFeatured  Boolean @default(false)
+//   comments    Comments[]
+// }
 
 model Comments {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -125,5 +125,5 @@ model Comments {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   user        User @relation(fields: [userEmail], references: [email])
-  post        Post @relation(fields: [postSlug], references: [slug])
+  // post        Post @relation(fields: [postSlug], references: [slug])
 }
