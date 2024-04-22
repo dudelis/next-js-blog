@@ -1,10 +1,6 @@
 import * as React from 'react';
-import type {
-  InferGetStaticPropsType,
-  GetStaticProps,
-  GetStaticPaths,
-  GetServerSideProps
-} from 'next'
+import type { GetStaticPaths } from 'next'
+import ReactMarkdown from "react-markdown"
 import styles from './singlePage.module.css';
 import { Spacer } from '@/components/Spacer/Spacer';
 import Image from 'next/image';
@@ -37,7 +33,7 @@ export interface IParams extends ParsedUrlQuery {
 
 async function SinglePage(props: TSinglePostProps) {
   console.log(props);
-  const post  = await getSinglePost(props.params.slug as string);
+  const post = await getSinglePost(props.params.slug as string);
   return (
     <div className={styles.container}>
       <Spacer />
@@ -61,7 +57,12 @@ async function SinglePage(props: TSinglePostProps) {
       <Spacer />
       <div suppressHydrationWarning className={styles.content}>
         <div className={styles.post}>
-
+          <div className="text-md font-light prose text-foreground" >
+          {/* <div className="prose text-foreground"  dangerouslySetInnerHTML={{ __html: post.content }}></div> */}
+            <ReactMarkdown>
+              {post.content}
+            </ReactMarkdown>
+          </div>
           {/* <div className="text-md font-light">
             {typeof window === "undefined" ? "Loading..." :<div className="prose text-foreground"  dangerouslySetInnerHTML={{ __html: post.content }}></div>}
           </div> */}
