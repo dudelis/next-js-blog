@@ -12,8 +12,7 @@ import Content from '@/components/Content/content';
 import { getAllPostIds, getPostData } from '@/lib/posts';
 import { TPost } from '@/@types/post';
 import { ParsedUrlQuery } from 'querystring';
-
-
+import { MDXRemote } from 'next-mdx-remote/rsc'
 
 export type TSinglePostProps = {
   params: { [key: string]: string | string[] | undefined };
@@ -22,17 +21,23 @@ export type TSinglePostProps = {
 export interface IParams extends ParsedUrlQuery {
   slug: string
 }
-// export type PostWithCategory = Prisma.PostGetPayload<{
-//   include: { category: true, user: true }
-// }>
+export const getSinglePost = async (slug: string) => {
+  const post: TPost = await getPostData(slug);
+  return post;
+}
 
-// const getPost = async (slug: string) => {
-//   const response = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${slug}`, { cache: "no-store" });
-//   return response.json();
-// }
+export const getStaticPaths: GetStaticPaths = async () => {
+  const postIds = getAllPostIds();
+  const paths = postIds.map((path) => ({
+    params: { slug: path }
+  }));
+  return {
+    paths,
+    fallback: false
+  }
+}
 
 async function SinglePage(props: TSinglePostProps) {
-  console.log(props);
   const post = await getSinglePost(props.params.slug as string);
   return (
     <div className={styles.container}>
@@ -55,18 +60,14 @@ async function SinglePage(props: TSinglePostProps) {
         </div>
       </div>
       <Spacer />
-      <div suppressHydrationWarning className={styles.content}>
+      <div className={styles.content}>
         <div className={styles.post}>
-          <div className="text-md font-light prose text-foreground" >
-          {/* <div className="prose text-foreground"  dangerouslySetInnerHTML={{ __html: post.content }}></div> */}
-            <ReactMarkdown>
+          <div className="text-md font-light prose prose-no-quotes prose-blockquote:text-accent text-foreground prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-foreground prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg prose-a:text-accent" >
+            <MDXRemote source={post.content} />
+            {/* <ReactMarkdown>
               {post.content}
-            </ReactMarkdown>
+            </ReactMarkdown> */}
           </div>
-          {/* <div className="text-md font-light">
-            {typeof window === "undefined" ? "Loading..." :<div className="prose text-foreground"  dangerouslySetInnerHTML={{ __html: post.content }}></div>}
-          </div> */}
-          <Content content={post.content} />
           <Spacer />
           <div className={styles.tags}>
             {/* <Comments postslug={post.slug} /> */}
@@ -84,19 +85,3 @@ async function SinglePage(props: TSinglePostProps) {
 
 export default SinglePage;
 
-export const getSinglePost = async (slug: string) => {
-  console.log(slug);
-  const post: TPost = await getPostData(slug);
-  return post;
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const postIds = getAllPostIds();
-  const paths = postIds.map((path) => ({
-    params: { slug: path }
-  }));
-  return {
-    paths,
-    fallback: false
-  }
-}
