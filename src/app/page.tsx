@@ -15,19 +15,19 @@ export default function Home(props: THomePageProps) {
   return (
     <div>
       <Spacer />
-      <h1 className="text-3xl md:text-4xl lg:text-6xl text-center font-bold"> 404 - coffee not found.</h1>
+      <h1 className="text-3xl font-bold text-center md:text-4xl lg:text-6xl"> 404 - coffee not found.</h1>
       <Featured />
       <Spacer />
-      <CategoryList />
+      {/* <CategoryList /> */}
       <Spacer />
       <section className="flex gap-5">
         <div className="flex-[3]">
-          <CardList page={page} />
+          {/* <CardList page={page} /> */}
         </div>
         <div className="hidden lg:flex flex-[1] flex-col">
-          <Menu />
+          {/* <Menu /> */}
           <Spacer />
-          <MenuCategories />
+          {/* <MenuCategories /> */}
         </div>
       </section>
     </div>
