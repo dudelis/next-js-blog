@@ -9,9 +9,7 @@ export async function GET(
   try {
     const comments = await prisma.comments.findMany({
       where: {
-        post: {
-          slug: params.slug,
-        },
+        postSlug: params.slug,
       },
       orderBy: {
         createdAt: "asc",

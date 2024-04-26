@@ -23,7 +23,7 @@ export function getAllPostIds() {
 }
 
 export function getFeaturedPost(){
-  const allPosts = getSortedPostsData();
+  const allPosts = getAllPosts();
   return allPosts.find((post) => post.featured === true);
 }
 
@@ -38,7 +38,7 @@ export function getAllCategories() {
   return categories;
 }
 
-export function getSortedPostsData() {
+export function getAllPosts() {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
@@ -67,4 +67,22 @@ export function getSortedPostsData() {
       return -1;
     }
   });
+}
+
+export function getFilteredPosts(page: number, category?: string) {
+  const posts = getAllPosts();
+  const count = posts.length;
+
+  
+
+  const POST_PER_PAGE = 3;
+  const skip = (page - 1) * POST_PER_PAGE;
+  const filteredPosts = posts.filter((post) => {
+    return post.category === category;
+  });
+
+
+
+  // Sort posts by date
+  
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { GetStaticPaths } from 'next'
+import type { GetStaticPaths, GetStaticPathsResult } from 'next'
 import ReactMarkdown from "react-markdown"
 import styles from './singlePage.module.css';
 import { Spacer } from '@/components/Spacer/Spacer';
@@ -14,11 +14,10 @@ import { TPost } from '@/@types/post';
 import { ParsedUrlQuery } from 'querystring';
 import { MDXRemote } from 'next-mdx-remote/rsc'
 
-export type TSinglePostProps = {
+type TSinglePostProps = {
   params: { [key: string]: string | string[] | undefined };
-  post: TPost;
 }
-export interface IParams extends ParsedUrlQuery {
+interface IParams extends ParsedUrlQuery {
   slug: string
 }
 
@@ -27,18 +26,13 @@ const getSinglePost = async (slug: string) => {
   return post;
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export async function generateStaticParams() {
   const postIds = getAllPostIds();
-  const paths = postIds.map((path) => ({
-    params: { slug: path }
-  }));
-  return {
-    paths,
-    fallback: false
-  }
+  const paths = postIds.map((id) => ({slug: id}));
+  return paths;
 }
 
-async function SinglePage(props: TSinglePostProps) {
+export default async function SinglePage(props: TSinglePostProps) {
   const post = await getSinglePost(props.params.slug as string);
   return (
     <div className={styles.container}>
@@ -83,6 +77,4 @@ async function SinglePage(props: TSinglePostProps) {
     </div>
   );
 }
-
-export default SinglePage;
 
