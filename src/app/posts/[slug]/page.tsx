@@ -57,7 +57,7 @@ export default async function SinglePage(props: TSinglePostProps) {
       <Spacer />
       <div className={styles.content}>
         <div className={styles.post}>
-          <div className="font-light prose text-md prose-no-quotes prose-blockquote:text-accent text-foreground prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-foreground prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg prose-a:text-accent" >
+          <div className="prose font- font-notmal text-md prose-no-quotes prose-blockquote:text-accent text-foreground prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-foreground prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg prose-a:text-accent" >
             <MDXRemote source={post.content} />
             {/* <ReactMarkdown>
               {post.content}

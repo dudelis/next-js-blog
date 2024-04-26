@@ -18,8 +18,8 @@ export default function NavLinks(props: INavLinksProps) {
       <Link className="hidden sm:block" href="/">Home</Link>
       <Link className="hidden sm:block" href="/contacts">Contacts</Link>
       <Link className="hidden sm:block" href="/about">About</Link>
-      <AuthLinks style="hidden sm:block" />
-      <div className="sm:hidden flex flex-col justify-between bg-transparent border-none relative cursor-pointer w-5 h-4" onClick={() => setOpen(!open)}>
+      <AuthLinks />
+      <div className="relative flex flex-col justify-between w-5 h-4 bg-transparent border-none cursor-pointer sm:hidden" onClick={() => setOpen(!open)}>
         <span className={cn(
           "bg-foreground h-[0.1rem] w-full transition ease-in-out duration-300",
           {"rotate-45 translate-x-[5px] translate-y-[7px]": open})}></span>
