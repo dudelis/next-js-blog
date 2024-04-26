@@ -8,7 +8,7 @@ import Menu from '@/components/Menu/Menu';
 import MenuCategories from '@/components/MenuCategories/MenuCategories';
 import Comments from '@/components/Comments/Comments';
 import { formatDate } from '@/utility/utils';
-import Content from '@/components/Content/content';
+
 import { getAllPostIds, getPostData } from '@/lib/posts';
 import { TPost } from '@/@types/post';
 import { ParsedUrlQuery } from 'querystring';
@@ -21,7 +21,8 @@ export type TSinglePostProps = {
 export interface IParams extends ParsedUrlQuery {
   slug: string
 }
-export const getSinglePost = async (slug: string) => {
+
+const getSinglePost = async (slug: string) => {
   const post: TPost = await getPostData(slug);
   return post;
 }
@@ -62,7 +63,7 @@ async function SinglePage(props: TSinglePostProps) {
       <Spacer />
       <div className={styles.content}>
         <div className={styles.post}>
-          <div className="text-md font-light prose prose-no-quotes prose-blockquote:text-accent text-foreground prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-foreground prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg prose-a:text-accent" >
+          <div className="font-light prose text-md prose-no-quotes prose-blockquote:text-accent text-foreground prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-foreground prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg prose-a:text-accent" >
             <MDXRemote source={post.content} />
             {/* <ReactMarkdown>
               {post.content}
