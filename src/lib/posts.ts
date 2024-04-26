@@ -3,7 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { TPost } from '@/@types/post';
 
-const postsDirectory = path.join(process.cwd(), 'src\\posts');
+const postsDirectory = path.join(process.cwd(), 'posts');
 
 export function getPostData(slug: string) {
   const fullPath = path.join(postsDirectory, `${slug}.md`);
@@ -73,7 +73,7 @@ export function getFilteredPosts(page: number, category?: string) {
   const posts = getAllPosts();
   const count = posts.length;
 
-  
+
 
   const POST_PER_PAGE = 3;
   const skip = (page - 1) * POST_PER_PAGE;
