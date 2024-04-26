@@ -60,14 +60,14 @@
   gap: 3rem;
 }
 .post {
-  flex: 5
+  flex: 3
 }
 .description{
   font-size: 1.1rem;
   font-weight: 300;
 }
 .rightMenu{
-  flex: 2;
+  flex: 1;
 }
 
 @media screen and (max-width: 1536px) {

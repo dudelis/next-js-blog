@@ -1,25 +1,20 @@
 import * as React from 'react';
-import styles from './navbar.module.css';
 import Link from 'next/link';
-import Image from 'next/image';
-import ThemeToggle from '../ThemeToggle/ThemeToggle';
-import AuthLinks from '../AuthLinks/AuthLinks';
 import NavLinks from '../NavLinks/NavLinks';
+import { LogoIcons } from '../logo-icons/logoicons';
 
 export interface INavbarProps {
 }
 
 export default function Navbar(props: INavbarProps) {
   return (
-    <div className={styles.container}>
-      <div className={styles.social}>
-        <Image src="/facebook.png" alt="facebook logo" width={24} height={24} />
-        <Image src="/youtube.png" alt="youtube logo" width={24} height={24} />
-        <Image src="/linkedin.png" alt="linkedin logo" width={24} height={24} />
+    <div className="flex justify-between items-center h-20">
+      <div className="hidden lg:flex flex-[1] gap-2 ">
+        <LogoIcons />        
       </div>
       <Link href="/">
-        <div className={styles.logo}>
-          Code Musician Blog
+        <div className="flex-[2] text-center text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold">
+          Code Musician
         </div>
       </Link>
       <NavLinks />

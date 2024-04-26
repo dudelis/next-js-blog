@@ -1,30 +1,44 @@
 import * as React from 'react';
+import type { GetStaticPaths } from 'next'
+import ReactMarkdown from "react-markdown"
 import styles from './singlePage.module.css';
 import { Spacer } from '@/components/Spacer/Spacer';
 import Image from 'next/image';
 import Menu from '@/components/Menu/Menu';
 import MenuCategories from '@/components/MenuCategories/MenuCategories';
 import Comments from '@/components/Comments/Comments';
-import { Prisma } from '@prisma/client';
 import { formatDate } from '@/utility/utils';
 import Content from '@/components/Content/content';
-
-
+import { getAllPostIds, getPostData } from '@/lib/posts';
+import { TPost } from '@/@types/post';
+import { ParsedUrlQuery } from 'querystring';
+import { MDXRemote } from 'next-mdx-remote/rsc'
 
 export type TSinglePostProps = {
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: { [key: string]: string | string[] | undefined };
+  post: TPost;
 }
-export type PostWithCategory = Prisma.PostGetPayload<{
-  include: { category: true, user: true }
-}>
-
-const getPost = async (slug: string) => {
-  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${slug}`, { cache: "no-store" });
-  return response.json();
+export interface IParams extends ParsedUrlQuery {
+  slug: string
+}
+export const getSinglePost = async (slug: string) => {
+  const post: TPost = await getPostData(slug);
+  return post;
 }
 
-async function SinglePage({ params }: { params: { slug: string } }) {
-  const post: PostWithCategory = await getPost(params.slug);
+export const getStaticPaths: GetStaticPaths = async () => {
+  const postIds = getAllPostIds();
+  const paths = postIds.map((path) => ({
+    params: { slug: path }
+  }));
+  return {
+    paths,
+    fallback: false
+  }
+}
+
+async function SinglePage(props: TSinglePostProps) {
+  const post = await getSinglePost(props.params.slug as string);
   return (
     <div className={styles.container}>
       <Spacer />
@@ -33,39 +47,41 @@ async function SinglePage({ params }: { params: { slug: string } }) {
           <h1 className={styles.title}>{post.title}</h1>
           <div className={styles.user}>
             <div className={styles.userImageContainer}>
-              <Image src={typeof post.user?.image === "undefined" ? post.user.image : "/empty user.png"} alt="" layout="fill" className={styles.userImage} />
+              <Image src="/my-image.jpeg" alt="" layout="fill" className={styles.userImage} />
             </div>
             <div className={styles.userTextContainer}>
-              <span className={styles.userName}>{post.user.name}</span>
-              <span className={styles.postDate}>{formatDate(post.createdAt)}</span>
+              <span className={styles.userName}>Konstantin Fukszon</span>
+              <span className={styles.postDate}>{formatDate(post.date)}</span>
             </div>
           </div>
         </div>
         <div className={styles.imageContainer}>
-          <Image src={post.img as string} alt="" layout="fill" className={styles.image} />
+          <Image src={post.mainImage} alt="" layout="fill" className={styles.image} />
         </div>
       </div>
       <Spacer />
-      <div suppressHydrationWarning className={styles.content}>
+      <div className={styles.content}>
         <div className={styles.post}>
-          
-          {/* <div className="text-md font-light">
-            {typeof window === "undefined" ? "Loading..." :<div className="prose text-foreground"  dangerouslySetInnerHTML={{ __html: post.content }}></div>}
-          </div> */}
-          <Content content={post.content} />
+          <div className="text-md font-light prose prose-no-quotes prose-blockquote:text-accent text-foreground prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-foreground prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg prose-a:text-accent" >
+            <MDXRemote source={post.content} />
+            {/* <ReactMarkdown>
+              {post.content}
+            </ReactMarkdown> */}
+          </div>
           <Spacer />
           <div className={styles.tags}>
-            <Comments postslug={params.slug} />
+            {/* <Comments postslug={post.slug} /> */}
           </div>
         </div>
         <div className={styles.rightMenu}>
-          <Menu />
+          {/* <Menu /> */}
           <Spacer />
-          <MenuCategories />
+          {/* <MenuCategories /> */}
         </div>
       </div>
     </div>
   );
 }
 
-export default SinglePage
+export default SinglePage;
+
