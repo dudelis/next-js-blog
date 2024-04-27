@@ -1,11 +1,4 @@
----
-title: "Converting CSV to JSON in Power Platform: A Developer's Guide"
-description: "WebRTC For Beginners"
-mainImage: "/blog-images/csv-to-json.jpeg"
-date: "2024-04-20"
-category: "Power Platform"
-featured: true
----
+
 
 Hey there, fellow developers! Have you ever encountered the need to convert CSV text to JSON format within the Power Platform? It's a task that we often come across, and in this blog post, I'll walk you through a powerful solution that will save you time and effort. Let's dive in!
 
@@ -22,6 +15,7 @@ Fortunately, there's a premium feature in the Power Platform that allows develop
 
 Let's create a custom connector and add some C# code to it. 
   1. Start by navigating to the Power Platform and accessing the <a href="https://make.powerapps.com/" target="_blank">Power Apps Maker</a> or <a href="https://make.powerautomate.com/" target="_blank">Power Automate Maker</a> portal.
+
   2. From the left-hand navigation pane, select the "Data" tab, and then click on "Custom connectors."
 
   3. Click on "New custom connector" to begin the creation process.
@@ -33,6 +27,7 @@ Let's create a custom connector and add some C# code to it.
 [![General Information of the custom connector](/blog-images/csv-to-json-02.png)](/blog-images/csv-to-json-02.png)
 
   5. Now we need to create an action and a couple of input parameters. We can make it possible to define the delimiter, to make sure we can parse various CSV formats. Therefore, switch to the Swagger Editor and paste the code below.
+
 
 [![Swagger editor](/blog-images/csv-to-json-03.png)](/blog-images/csv-to-json-03.png)
 
@@ -79,10 +74,15 @@ tags: []
 
   6. After you created the custom connector, navigate to the Code section and enable it and paste the piece of code, written below. Please, do not forget to enable code execution for the action, that we created with the swagger:
 
+
+6. After you created the custom connector, navigate to the Code section and enable it and paste the piece of code, written below. Please, do not forget to enable code execution for the action, that we created with the swagger:
+
 [![Code editor](/blog-images/csv-to-json-04.png)](/blog-images/csv-to-json-04.png)
 
 
+
 ```
+
 using System.Data;
 public class Script : ScriptBase
 {
@@ -135,19 +135,8 @@ public class Script : ScriptBase
         }
     }
 }
+
 ```
-
-  7. You can save your custom connector and test.
-
-
->  Please, make sure you test the custom connector inside the flow. The Test section of the custom connector editor removes the invisible line breaks, which are normally obtained from files.
-
-[![Code editor](/blog-images/csv-to-json-05.png)](/blog-images/csv-to-json-05.png)
-
-  8. Once everything is in place, save and publish your custom connector to use within the Power Platform. When you obtain the JSON as text inside the flow, you can use the ParseJSON action, to  You can use them ParseJSON 
-
-##### Accessing Source Code and Additional Resources
-As promised, I've got something extra for you! If you're interested in exploring the source code or getting a deeper understanding of how the custom connector works or you want simply to install the Connector and start using it, hrer is a GitHub repo for you: <a href="https://github.com/dudelis/power-platform-stuff" target="_blank">Power Platform Stuff</a>. Feel free to download the source code and adapt it to suit your needs.
 
 ##### Conclusion
 By leveraging the custom connector option within the Power Platform, we can convert CSV text to JSON format efficiently and without relying on excessive API calls or costly third-party services. I hope this step-by-step guide has helped you understand how to create a custom connector and given you the tools to tackle this task with ease. Happy coding!

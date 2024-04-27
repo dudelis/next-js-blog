@@ -41,15 +41,14 @@ const Comments: React.FunctionComponent<TCommentsProps> = ({ postslug }) => {
   }
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Comments</h2>
+    <section className="flex flex-col w-full">
+      <h2 className="items-center justify-between mb-12 text-xl font-bold md:text-2xl lg:text-3xl">Comments</h2>
       {status === 'authenticated' ? (
-        <div className={styles.commentInput}>
-          <textarea placeholder="Write a comment..." className={styles.input} onChange={e => setContent(e.target.value)} value={content}></textarea>
+        <div className="flex items-center justify-between gap-4 mt-4">
+          <textarea placeholder="Write a comment..." className="flex-[6] p-4 min-w-10 " onChange={e => setContent(e.target.value)} value={content}></textarea>
           <button className={styles.button} onClick={handleSubmit}>Post</button>
         </div>
       ) : (<Link href="/login">Login to post a comment</Link>)}
-      <Spacer />
       <div className={styles.comments}>
         {isLoading ? "loading" : comments.map((comment) => (
           <div className={styles.comment} key={comment.id}>
@@ -69,7 +68,7 @@ const Comments: React.FunctionComponent<TCommentsProps> = ({ postslug }) => {
         ))}
       </div>
 
-    </div>
+    </section>
   );
 };
 

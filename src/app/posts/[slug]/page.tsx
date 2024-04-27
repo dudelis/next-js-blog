@@ -1,9 +1,10 @@
 import * as React from 'react';
 import type { GetStaticPaths, GetStaticPathsResult } from 'next'
+import remarkGfm from 'remark-gfm'
 import ReactMarkdown from "react-markdown"
 import styles from './singlePage.module.css';
 import { Spacer } from '@/components/Spacer/Spacer';
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 import Menu from '@/components/Menu/Menu';
 import MenuCategories from '@/components/MenuCategories/MenuCategories';
 import Comments from '@/components/Comments/Comments';
@@ -13,6 +14,7 @@ import { getAllPostIds, getPostData } from '@/lib/posts';
 import { TPost } from '@/@types/post';
 import { ParsedUrlQuery } from 'querystring';
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import { Component } from 'react';
 
 type TSinglePostProps = {
   params: { [key: string]: string | string[] | undefined };
@@ -28,9 +30,42 @@ const getSinglePost = async (slug: string) => {
 
 export async function generateStaticParams() {
   const postIds = getAllPostIds();
-  const paths = postIds.map((id) => ({slug: id}));
+  const paths = postIds.map((id) => ({ slug: id }));
   return paths;
 }
+
+// export async function generateMetadata({ params }) {
+//   let post = await getSinglePost(params.slug as string);
+//   if (!post) {
+//     return
+//   }
+
+//   const {title, date, description, mainImage} = post;
+//   let ogImage = mainImage ? mainImage : `${baseUrl}/og?title=${encodeURIComponent(title)}`
+
+//   return {
+//     title,
+//     description,
+//     openGraph: {
+//       title,
+//       description,
+//       type: 'article',
+//       publishedTime,
+//       url: `${baseUrl}/posts/${post.slug}`,
+//       images: [
+//         {
+//           url: ogImage,
+//         },
+//       ],
+//     },
+//     twitter: {
+//       card: 'summary_large_image',
+//       title,
+//       description,
+//       images: [ogImage],
+//     },
+//   }
+// }
 
 export default async function SinglePage(props: TSinglePostProps) {
   const post = await getSinglePost(props.params.slug as string);
@@ -57,19 +92,14 @@ export default async function SinglePage(props: TSinglePostProps) {
       <Spacer />
       <div className={styles.content}>
         <div className={styles.post}>
-          <div className="prose font- font-notmal text-md prose-no-quotes prose-blockquote:text-accent text-foreground prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-foreground prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg prose-a:text-accent" >
+          <article className="font-normal prose text-md prose-no-quotes prose-blockquote:text-accent text-foreground prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-foreground prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg prose-a:text-accent" >
             <MDXRemote source={post.content} />
-            {/* <ReactMarkdown>
-              {post.content}
-            </ReactMarkdown> */}
-          </div>
+          </article>
           <Spacer />
-          <div className={styles.tags}>
-            {/* <Comments postslug={post.slug} /> */}
-          </div>
+          {/* <Comments postslug={post.slug} /> */}
         </div>
         <div className={styles.rightMenu}>
-          {/* <Menu /> */}
+          <Menu />
           <Spacer />
           {/* <MenuCategories /> */}
         </div>

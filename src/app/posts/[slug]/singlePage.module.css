@@ -37,6 +37,8 @@
 .image {
   object-fit: cover;
   border-radius: 5px;
+  height: calc(100% - 1rem);
+  width: 100%;
 }
 
 .userImageContainer {

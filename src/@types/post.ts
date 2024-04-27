@@ -1,8 +1,7 @@
 export type TPost = {
   slug: string;
   title: string
-  metaTitle: string;
-  metaDesc: string;
+  description: string;
   mainImage: string;
   date: Date;
   category: string;
