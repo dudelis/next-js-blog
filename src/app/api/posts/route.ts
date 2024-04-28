@@ -1,8 +1,4 @@
-import { getAllPosts } from "@/lib/posts";
-// import { getAuthSession } from "@/utility/auth";
-// import prisma from "@/utility/prismaClient";
-// import { Prisma } from "@prisma/client";
-
+import { getPosts } from "@/lib/posts";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
@@ -10,7 +6,7 @@ export const GET = async (req: NextRequest) => {
   const cat = req.nextUrl.searchParams.get("cat") || "";
   const POST_PER_PAGE = 3;
   try {
-    const allPosts = getAllPosts();
+    const allPosts = getPosts();
     const count = allPosts.length;
     const skip = (parseInt(page) - 1) * POST_PER_PAGE;
     const filteredPosts = allPosts.filter((post) => {

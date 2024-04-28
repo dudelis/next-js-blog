@@ -1,7 +1,4 @@
 import * as React from 'react';
-import type { GetStaticPaths, GetStaticPathsResult } from 'next'
-import remarkGfm from 'remark-gfm'
-import ReactMarkdown from "react-markdown"
 import styles from './singlePage.module.css';
 import { Spacer } from '@/components/Spacer/Spacer';
 import Image, { ImageProps } from 'next/image';
@@ -10,26 +7,22 @@ import MenuCategories from '@/components/MenuCategories/MenuCategories';
 import Comments from '@/components/Comments/Comments';
 import { formatDate } from '@/utility/utils';
 
-import { getAllPostIds, getPostData } from '@/lib/posts';
-import { TPost } from '@/@types/post';
-import { ParsedUrlQuery } from 'querystring';
+import { getAllPostSlugs, getPost } from '@/lib/posts';
+import { TPost } from '@/lib/posts';
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import { Component } from 'react';
+
 
 type TSinglePostProps = {
   params: { [key: string]: string | string[] | undefined };
 }
-interface IParams extends ParsedUrlQuery {
-  slug: string
-}
 
-const getSinglePost = async (slug: string) => {
-  const post: TPost = await getPostData(slug);
+const getSinglePost = (slug: string) => {
+  const post: TPost = getPost(slug);
   return post;
 }
 
 export async function generateStaticParams() {
-  const postIds = getAllPostIds();
+  const postIds = getAllPostSlugs();
   const paths = postIds.map((id) => ({ slug: id }));
   return paths;
 }
@@ -68,7 +61,7 @@ export async function generateStaticParams() {
 // }
 
 export default async function SinglePage(props: TSinglePostProps) {
-  const post = await getSinglePost(props.params.slug as string);
+  const post = getSinglePost(props.params.slug as string);
   return (
     <div className={styles.container}>
       <Spacer />
@@ -86,7 +79,7 @@ export default async function SinglePage(props: TSinglePostProps) {
           </div>
         </div>
         <div className={styles.imageContainer}>
-          <Image src={post.mainImage} alt="" layout="fill" className={styles.image} />
+          <Image src={post.image} alt="" layout="fill" className={styles.image} />
         </div>
       </div>
       <Spacer />
