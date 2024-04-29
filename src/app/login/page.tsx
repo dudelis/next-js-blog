@@ -1,6 +1,5 @@
 "use client"
 import * as React from 'react';
-import styles from './login.module.css';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
@@ -12,7 +11,7 @@ function LoginPage (props: ILoginPageProps) {
   const router = useRouter();
   const {data, status} = useSession();
   
-  if (status === "loading") return <div className={styles.loading}>Loading...</div>
+  if (status === "loading") return <div>Loading...</div>
   if (status === "authenticated") router.push("/");
   const buttonClass = "rounded-[5px] cursor-pointer font-bold border-none text-center py-8 px-10 text-xs md:py-6 md:px-8 md:text-base"
   return (
