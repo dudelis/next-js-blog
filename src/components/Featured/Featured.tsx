@@ -21,7 +21,7 @@ export default async function Featured(props: IFeaturedProps) {
   return (
     <section className="mt-8 md:mt-12 flex gap-8 justify-between items-center">
       <div className="hidden lg:flex relative h-96 flex-[1]">
-        {post && <Image src={post.mainImage} alt="" fill className="object-cover" />}
+        {post && <Image src={post.image} alt="" fill className="object-cover" />}
       </div>
       <div className="flex-[1] flex flex-col gap-4 text-foreground">
         <h2 className="text-xl md:text-2xl lg:text-3xl">{post?.title}</h2>

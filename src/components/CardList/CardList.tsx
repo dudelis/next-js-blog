@@ -13,8 +13,6 @@ export interface ICardListProps {
   category?: string; 
 }
 
-
-
 const getData = async (page: number, category: string) => {
   const response = await fetch(`${process.env.NEXTAUTH_URL}/api/posts?page=${page}&cat=${category || ""}`, {cache: "no-store"});
   return response.json();

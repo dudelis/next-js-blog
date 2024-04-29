@@ -2,9 +2,10 @@
 title: "Converting CSV to JSON in Power Platform: A Developer's Guide"
 metaTitle: "WebRTC For Beginners"
 metaDesc: "WebRTC For Beginners"
-mainImage: "/blog-images/csv-to-json.jpeg"
+image: "/blog-images/csv-to-json.jpeg"
 date: "2024-04-20"
 category: "Power Platform"
+tags: ""
 featured: true
 ---
 

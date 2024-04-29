@@ -20,7 +20,7 @@ export function getPost(slug: string) {
   const fullPath = path.join(postsDirectory, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const matterResult = matter(fileContents);
- const tags = matterResult.data.tags.split(',').map((tag: string) => tag.trim());
+ const tags = matterResult.data.tags?.split(',').map((tag: string) => tag.trim());
   return {
     slug,
     tags,
