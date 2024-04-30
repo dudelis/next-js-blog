@@ -38,7 +38,7 @@ export default function NavLinks(props: INavLinksProps) {
           <Link href="/">Home</Link>
           <Link href="/contacts">Contacts</Link>
           <Link href="/about">About</Link>
-          <AuthLinks style="" />
+          <AuthLinks />
         </div>
       )}
     </div>
