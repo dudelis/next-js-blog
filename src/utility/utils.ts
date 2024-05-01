@@ -12,6 +12,22 @@ export function formatDate(date: Date) {
   // Format the date as dd.mm.yyyy
   return `${day}.${month}.${year}`;
 }
+export function formatDateTime(date: Date) {
+  // Ensure input is a Date object
+  if (!(date instanceof Date)) {
+      date = new Date(date);
+  }
+
+  // Extract day, month, year, minute, and hour
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is 0-indexed
+  const year = date.getFullYear();
+  const minute = date.getMinutes().toString().padStart(2, '0');
+  const hour = date.getHours().toString().padStart(2, '0');
+
+  // Format the date as dd.mm.yyyy
+  return `${day}.${month}.${year} ${hour}:${minute}`;
+}
 
 
 export function slugify(text: string) {

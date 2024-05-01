@@ -89,7 +89,7 @@ export default async function SinglePage(props: TSinglePostProps) {
             <MDXRemote source={post.content} />
           </article>
           <Spacer />
-          {/* <Comments postslug={post.slug} /> */}
+          <Comments postslug={post.slug} />
         </div>
         <div className={styles.rightMenu}>
           <Menu />
