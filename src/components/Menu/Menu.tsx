@@ -53,7 +53,7 @@ export default async function Menu (props: IMenuProps) {
   const categories: Category[] = await getData();
   return (
     <div className={styles.container}>
-      <h2 className="mb-12 text-xl md:text-2xl lg:text-3xl font-bold">Most popular</h2>
+      <h2 className="mb-12 text-xl font-bold md:text-2xl lg:text-3xl">Most popular</h2>
       <div className={styles.items}>
         {items.map((item, index)=> (
           <Link href={item.link} key={index} className={styles.item}>
