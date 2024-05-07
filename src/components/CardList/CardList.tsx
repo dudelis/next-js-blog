@@ -5,15 +5,13 @@ import Image from 'next/image';
 import {formatDate} from '@/utility/utils';
 import Link from 'next/link';
 import { Prisma } from '@prisma/client'
-import { getAllPostIds, getPostData } from '@/lib/posts';
-import { TPost } from '@/@types/post';
+import { getAllPostSlugs, getPost } from '@/lib/posts';
+import { TPost } from '@/lib/posts';
 
 export interface ICardListProps {
   page: number;
   category?: string; 
 }
-
-
 
 const getData = async (page: number, category: string) => {
   const response = await fetch(`${process.env.NEXTAUTH_URL}/api/posts?page=${page}&cat=${category || ""}`, {cache: "no-store"});
@@ -32,7 +30,7 @@ const CardList= async ({page, category}: ICardListProps) => {
         {posts && posts.map((item) => (
           <div className="flex items-center gap-12 mb-12" key={item.slug}>
             <div className="relative hidden w-2/5 lg:flex h-72">
-              <Image className="object-cover" src={item.mainImage as string} alt={item.title} fill ></Image>
+              <Image className="object-cover" src={item.image as string} alt={item.title} fill ></Image>
             </div>
             <div className="flex flex-col w-full gap-4 lg:w-2/5">
               <div className="self-start text-xs">
