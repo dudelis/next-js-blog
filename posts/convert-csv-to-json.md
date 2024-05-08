@@ -4,7 +4,7 @@ description: "WebRTC For Beginners"
 date: "2024-04-20"
 image: "/blog-images/csv-to-json.jpeg"
 tags: Power Platform, Custom Connector, Code
-category: Power Platform
+category: power-platform
 featured: true
 ---
 

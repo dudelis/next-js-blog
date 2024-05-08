@@ -70,7 +70,7 @@ export default async function SinglePage(props: TSinglePostProps) {
           <h1 className={styles.title}>{post.title}</h1>
           <div className={styles.user}>
             <div className={styles.userImageContainer}>
-              <Image src="/my-image.jpeg" alt="" layout="fill" className={styles.userImage} />
+              <Image src="/me-captain.jpeg" alt="" width={300} height={300} className={styles.userImage} />
             </div>
             <div className={styles.userTextContainer}>
               <span className={styles.userName}>Konstantin Fukszon</span>
