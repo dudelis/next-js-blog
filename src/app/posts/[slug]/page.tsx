@@ -28,7 +28,7 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export function generateMetadata( { params}: TSinglePostProps,  parent: ResolvingMetadata): Metadata {
+export function generateMetadata( { params}: TSinglePostProps,  parent: ResolvingMetadata): Metadata | undefined {
   const post = getSinglePost(params.slug as string);
   if (!post) {
     return
