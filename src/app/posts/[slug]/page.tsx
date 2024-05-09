@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Spacer } from '@/components/Spacer/Spacer';
 import Image, { ImageProps } from 'next/image';
+import { Metadata, ResolvingMetadata } from 'next'
 import Menu from '@/components/Menu/Menu';
 import MenuCategories from '@/components/MenuCategories/MenuCategories';
 import Comments from '@/components/Comments/Comments';
@@ -15,6 +16,7 @@ type TSinglePostProps = {
   params: { [key: string]: string | string[] | undefined };
 }
 
+
 const getSinglePost = (slug: string) => {
   const post: TPost = getPost(slug);
   return post;
@@ -26,38 +28,37 @@ export async function generateStaticParams() {
   return paths;
 }
 
-// export async function generateMetadata({ params }) {
-//   let post = await getSinglePost(params.slug as string);
-//   if (!post) {
-//     return
-//   }
+export function generateMetadata( { params}: TSinglePostProps,  parent: ResolvingMetadata): Metadata {
+  const post = getSinglePost(params.slug as string);
+  if (!post) {
+    return
+  }
+  const { title, date, description, image } = post;
+ 
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      authors: ['Konstantin Fukszon'],
+      type: 'article',
+      url: `https://www.codemusician.dev/posts/${post.slug}`,
+      images: [
+        {
+          url: image,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  }
+}
 
-//   const {title, date, description, mainImage} = post;
-//   let ogImage = mainImage ? mainImage : `${baseUrl}/og?title=${encodeURIComponent(title)}`
-
-//   return {
-//     title,
-//     description,
-//     openGraph: {
-//       title,
-//       description,
-//       type: 'article',
-//       publishedTime,
-//       url: `${baseUrl}/posts/${post.slug}`,
-//       images: [
-//         {
-//           url: ogImage,
-//         },
-//       ],
-//     },
-//     twitter: {
-//       card: 'summary_large_image',
-//       title,
-//       description,
-//       images: [ogImage],
-//     },
-//   }
-// }
 
 export default async function SinglePage(props: TSinglePostProps) {
   const post = getSinglePost(props.params.slug as string);
