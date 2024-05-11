@@ -2,6 +2,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Category } from '@prisma/client';
+import { getUniqueTags } from '@/lib/posts';
 
 
 export type TCategoryListProps = {}
@@ -10,6 +11,7 @@ const getData = async () => {
   const response = await fetch(`${process.env.NEXTAUTH_URL}/api/categories`, {cache: "no-store"});
   return response.json();
 }
+const getTags = getUniqueTags();
 
 const CategoryList = async (props: TCategoryListProps) => {
   const data: Category[] = await getData();
