@@ -20,30 +20,16 @@ For example, a <b>shared_logicflows</b> connector, that is related to apps that 
 #### PowerShell Script
 The PowerShell script below is straightforward. It connects to your Power Platform environment, retrieves the problematic connections, removes them, and disconnects. You can schedule this script to run periodically or execute it manually when needed.
 
-```
-#Insert your own value
-$environment = "YourEnvironmentName"
+<div
+  dangerouslySetInnerHTML={{
+    __html: `<script src="https://gist.github.com/dudelis/dce8e700dde7763e73736d670250af91.js"></script>`,
+  }}
+/>
 
-Add-PowerAppsAccount
-
-$items = Get-AdminPowerAppConnection `
-  -ConnectorName shared_logicflows `
-  -EnvironmentName $environment `
-| Where-Object {$_.Statuses[0].status -eq "error"}
-
-ForEach ($item in $items)
-{
-  Remove-AdminPowerAppConnection `
-    -ConnectionName $item.ConnectionName `
-    -ConnectorName $item.ConnectorName `
-    -EnvironmentName $item.EnvironmentName 
-}
-
-```
 > Make sure to replace "YourEnvironmentName" with the actual name of your environment. This script retrieves all shared_logicflows connections in error state and removes them one by one.
 
 
 #### Conclusion
 Cleaning up <b>shared_logicflows</b> connections in error state is essential for maintaining a healthy Power Platform environment. By following the steps outlined in this blog post, you’ll keep your connections tidy and improve overall performance.
 
-Remember to test the script in a non-production environment first to ensure it behaves as expected. Happy cleaning! 
+Remember to test the script in a non-production environment first to ensure it behaves as expected. Happy cleaning!
