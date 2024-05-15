@@ -1,5 +1,5 @@
 ---
-title: "ADMIN: How to remove connections from the environment (eg. shared_logicflows)"
+title: "ADMIN: How to delete connections from the environment"
 description: "Cleaning up **shared_logicflows** connections in error state is essential for maintaining a healthy Power Platform environment. By following the steps outlined in this blog post, you’ll keep your connections tidy and improve overall performance."
 date: "2024-05-16"
 image: "/blog-images/remove-connections.jpeg"
