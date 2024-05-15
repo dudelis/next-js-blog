@@ -37,106 +37,24 @@ Let's create a custom connector and add some C# code to it.
 
 [![Swagger editor](/blog-images/csv-to-json-03.png)](/blog-images/csv-to-json-03.png)
 
-```
-swagger: '2.0'
-info:
-  title: Convert CSV to JSON
-  description: ''
-  version: '1.0'
-host: microsoft.com
-basePath: /
-schemes:
-  - https
-consumes: []
-produces: []
-paths:
-  /convertCSVtoJSON:
-    post:
-      responses:
-        default:
-          description: default
-          schema:
-            type: string
-      summary: Convert CSV to JSON
-      operationId: convertCSVtojSON
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              csvText:
-                type: string
-              csvDelimeter:
-                type: string
-definitions: {}
-parameters: {}
-responses: {}
-securityDefinitions: {}
-security: []
-tags: []
-```
+<div
+  dangerouslySetInnerHTML={{
+    __html: `<script src="https://gist.github.com/dudelis/68ed1c88314bf22e0ee1919729b017a0.js"></script>`,
+  }}
+/>
+
+
 
   6. After you created the custom connector, navigate to the Code section and enable it and paste the piece of code, written below. Please, do not forget to enable code execution for the action, that we created with the swagger:
 
 [![Code editor](/blog-images/csv-to-json-04.png)](/blog-images/csv-to-json-04.png)
 
 
-```
-using System.Data;
-public class Script : ScriptBase
-{
-    public override async Task<HttpResponseMessage> ExecuteAsync()
-    {
-        HttpResponseMessage response;
-        if (this.Context.OperationId.ToLower() == "convertcsvtojson")
-        {
-            var contentAsString = await this.Context.Request.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var contentAsJson = JObject.Parse(contentAsString);
-            var csv = (string)contentAsJson["csvText"];
-            var delimeter = (char)contentAsJson["csvDelimeter"];
-            string jsonOutput = CsvConverter.ConvertCsvToJson(csv, delimeter);
-            response = new HttpResponseMessage(HttpStatusCode.OK);
-            response.Content = new StringContent(jsonOutput);
-            return response;
-        }
-
-        // Handle an invalid operation ID
-        response = new HttpResponseMessage(HttpStatusCode.BadRequest);
-        response.Content = CreateJsonContent($"Unknown operation ID '{this.Context.OperationId}'");
-        return response;
-    }
-
-    public class CsvConverter
-    {
-        public static string ConvertCsvToJson(string csvText, char delimiter)
-        {
-            string[] lines = csvText.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-            string[] headers = lines[0].Split(delimiter);
-
-            var jsonArray = new List<Dictionary<string, string>>();
-
-            for (int i = 1; i < lines.Length; i++)
-            {
-                string[] fields = lines[i].Split(delimiter);
-                var jsonObject = new Dictionary<string, string>();
-
-                for (int j = 0; j < headers.Length; j++)
-                {
-                    if (fields.Length > j)
-                        jsonObject[headers[j]] = fields[j];
-                    else
-                        jsonObject[headers[j]] = string.Empty;
-                }
-                jsonArray.Add(jsonObject);
-            }
-
-            return Newtonsoft.Json.JsonConvert.SerializeObject(jsonArray);
-        }
-    }
-}
-```
+<div
+  dangerouslySetInnerHTML={{
+    __html: `<script src="https://gist.github.com/dudelis/ad5bbdc9793fd474f56c7cdd701ccae0.js"></script>`,
+  }}
+/>
 
   7. You can save your custom connector and test.
 
