@@ -42,3 +42,11 @@ export function slugify(text: string) {
 export function stripHtml(text: string) {
   return text.replace(/<[^>]*>?/gm, '');
 }
+
+export function getBaseUrl() {
+  return process.env.VERCEL_ENV === "production"
+    ? `https://codemusician.dev`
+    : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : `http://localhost:3000`;
+}

@@ -5,7 +5,7 @@ import { Metadata, ResolvingMetadata } from 'next'
 import Menu from '@/components/Menu/Menu';
 import MenuCategories from '@/components/MenuCategories/MenuCategories';
 import Comments from '@/components/Comments/Comments';
-import { formatDate } from '@/utility/utils';
+import { formatDate, getBaseUrl } from '@/utility/utils';
 
 import { getAllPostSlugs, getPost } from '@/lib/posts';
 import { TPost } from '@/lib/posts';
@@ -35,7 +35,6 @@ export function generateMetadata({ params }: TSinglePostProps, parent: Resolving
     return
   }
   const { title, date, description, image } = post;
-
   return {
     title,
     description,
@@ -47,7 +46,7 @@ export function generateMetadata({ params }: TSinglePostProps, parent: Resolving
       url: `https://www.codemusician.dev/posts/${post.slug}`,
       images: [
         {
-          url: image,
+          url: `${getBaseUrl()}${image}`,
         },
       ],
     },
@@ -55,7 +54,7 @@ export function generateMetadata({ params }: TSinglePostProps, parent: Resolving
       card: 'summary_large_image',
       title,
       description,
-      images: [image],
+      images: [`${getBaseUrl()}${image}`],
     },
   }
 }
