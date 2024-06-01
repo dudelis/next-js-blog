@@ -10,8 +10,9 @@ import { formatDate } from '@/utility/utils';
 import { getAllPostSlugs, getPost } from '@/lib/posts';
 import { TPost } from '@/lib/posts';
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import { mdxComponents } from '@/components/mdx/mdx';
 
-
+// Path: src/app/posts/%5Bslug%5D/page.tsx
 type TSinglePostProps = {
   params: { [key: string]: string | string[] | undefined };
 }
@@ -28,13 +29,13 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export function generateMetadata( { params}: TSinglePostProps,  parent: ResolvingMetadata): Metadata | undefined {
+export function generateMetadata({ params }: TSinglePostProps, parent: ResolvingMetadata): Metadata | undefined {
   const post = getSinglePost(params.slug as string);
   if (!post) {
     return
   }
   const { title, date, description, image } = post;
- 
+
   return {
     title,
     description,
@@ -62,6 +63,7 @@ export function generateMetadata( { params}: TSinglePostProps,  parent: Resolvin
 
 export default async function SinglePage(props: TSinglePostProps) {
   const post = getSinglePost(props.params.slug as string);
+
   return (
     <div className="flex gap-4 2xl:gap-8 flex-col">
       <Spacer />
@@ -85,19 +87,15 @@ export default async function SinglePage(props: TSinglePostProps) {
         </div>
       </section>
       <Spacer />
-      <section className="flex gap-12">
-        <div className="flex-[3]">
-          <article className="font-normal prose text-md prose-no-quotes prose-blockquote:text-accent text-foreground prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-foreground prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg prose-a:text-accent" >
-            <MDXRemote source={post.content} />
+      <section className="flex">
+        <div className="flex flex-col w-full">
+          <article className="font-normal max-w-full prose text-md prose-no-quotes prose-blockquote:text-accent text-foreground prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-foreground prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg prose-a:text-accent" >
+            <MDXRemote source={post.content} components={mdxComponents} />
           </article>
           <Spacer />
           <Comments postslug={post.slug} />
         </div>
-        <div className="flex-1">
-          {/* <Menu /> */}
-          <Spacer />
-          {/* <MenuCategories /> */}
-        </div>
+        
       </section>
     </div>
   );
