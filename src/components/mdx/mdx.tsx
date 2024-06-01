@@ -1,8 +1,4 @@
 import type { MDXComponents } from 'mdx/types'
-import dynamic from 'next/dynamic';
-import Image, { ImageProps } from 'next/image'
-import ReactEmbedGist from 'react-embed-gist';
-
 
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
