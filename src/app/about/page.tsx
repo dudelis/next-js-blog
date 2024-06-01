@@ -1,5 +1,22 @@
 import * as React from 'react';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Code Musician Blog',
+  description: 'A blog about IT, code, music and everything in between.',
+  openGraph: {
+    title: 'Code Musician Blog',
+    description: 'A blog about IT, code, music and everything in between.',
+    url: 'https://www.codemusician.dev',
+    type: 'website',
+    images: [
+      {
+        url: 'https://www.codemusician.dev/images/codemusicianlogo.png',
+      },
+    ],
+  },
+}
 
 interface IAboutProps {
 }

@@ -1,5 +1,21 @@
 import * as React from 'react';
-import Image from 'next/image';
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Code Musician Blog',
+  description: 'A blog about IT, code, music and everything in between.',
+  openGraph: {
+    title: 'Code Musician Blog',
+    description: 'A blog about IT, code, music and everything in between.',
+    url: 'https://www.codemusician.dev',
+    type: 'website',
+    images: [
+      {
+        url: 'https://www.codemusician.dev/images/codemusicianlogo.png',
+      },
+    ],
+  },
+}
 
 interface IContactsProps {
 }
@@ -12,7 +28,7 @@ const Contacts: React.FunctionComponent<IContactsProps> = (props) => {
         <div className="flex flex-col-reverse items-center justify-between gap-8 md:flex-row">
           <div className='flex flex-col flex-[2] gap-4 justify-start'>
             <p className="text-base font-light text-justify">
-              You can reach me at <a href="mailto:fukszon.kostya@gmail.com">fukszon.kostya@gmail.com</a>
+              You can reach me at <a className='text-accent' href="mailto:fukszon.kostya@gmail.com">fukszon.kostya@gmail.com</a>
             </p>
           </div>
         </div>
