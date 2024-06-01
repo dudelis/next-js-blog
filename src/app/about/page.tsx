@@ -16,8 +16,8 @@ const About: React.FunctionComponent<IAboutProps> = (props) => {
             Hello, World! I’m the human version of a Swiss Army knife in the tech universe. By day, I’m a developer, juggling code like a circus performer and making software bend to my will. I’ve got a passion for all things IT, and I’m always on the lookout for the next big thing in tech town.
             </p>
           </div>
-          <div className='relative flex-[1]'>
-            <Image src="/me-profile.jpg" alt="Code Musician" height={250} width={250} />
+          <div className='relative flex-[1] transform transition-transform duration-500 hover:scale-105'>
+            <Image className='border-4 border-white rounded shadow-md' src="/me-profile.jpg" alt="Code Musician" height={250} width={250} />
           </div>
         </div>
         <div className="flex flex-col-reverse items-center justify-between gap-8 md:flex-row-reverse">
@@ -27,8 +27,8 @@ const About: React.FunctionComponent<IAboutProps> = (props) => {
             When I’m not busy being a binary whisperer, you can find me orchestrating symphonies of sound. I’m a maestro of multiple instruments, and my vocals aren’t too shabby either. Check out my YouTube channel to see me in action; it’s where I hit the high notes and the like button collides.
             </p>
           </div>
-          <div className='relative flex-[1]'>
-            <Image src="/me-guitar.jpg" alt="Code Musician" height={250} width={250} />
+          <div className='relative flex-[1] transform transition-transform duration-500 hover:scale-105'>
+            <Image className='border-4 border-white rounded shadow-md' src="/me-guitar.jpg" alt="Code Musician" height={250} width={250} />
           </div>
         </div>
         <div className="flex flex-col-reverse items-center gap-4 md:flex-row">
@@ -38,8 +38,8 @@ const About: React.FunctionComponent<IAboutProps> = (props) => {
             When I’m not debugging, I’m navigating the open seas with my first mate—my son. Together, we hoist the sails, chase sunsets, and decode the wind’s secrets. Sailing isn’t just about coordinates; it’s about finding your true north.
             </p>
           </div>
-          <div className='relative flex-[1]'>
-            <Image src="/me-captain.jpeg" alt="Code Musician" height={300} width={300} />
+          <div className='relative flex-[1] transform transition-transform duration-500 hover:scale-105'>
+            <Image className='border-4 border-white rounded shadow-md' src="/me-captain.jpeg" alt="Code Musician" height={300} width={300} />
           </div>
         </div>
         <div className="flex flex-col-reverse items-center justify-between gap-8 md:flex-row-reverse">
@@ -49,8 +49,8 @@ const About: React.FunctionComponent<IAboutProps> = (props) => {
             Mountains call my name like a forgotten variable. Whether it’s scaling peaks or exploring forest trails, I’m in my element. The syntax of nature—trees, rocks, and winding paths—speaks to me. And yes, I’ve debugged a stubborn trail marker or two.
             </p>
           </div>
-          <div className='relative flex-[1]'>
-            <Image src="/me-hiking.png" alt="Code Musician" height={250} width={250} />
+          <div className='relative flex-[1] transform transition-transform duration-500 hover:scale-105'>
+            <Image className='border-4 border-white rounded shadow-md' src="/me-hiking.png" alt="Code Musician" height={250} width={250} />
           </div>
         </div>
       </div>
