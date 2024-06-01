@@ -28,8 +28,8 @@ export default function Footer(props: IFooterProps) {
         <div className="flex flex-col justify-between w-full gap-2 font-light text-center md:text-start md:w-auto">
           <span className="text-[1rem] font-bold text-foreground">Links</span>
           <Link href="/">Home</Link>
-          <Link href="/Contacts">Contacts</Link>
-          <Link href="/About">About</Link>
+          <Link href="/contacts">Contacts</Link>
+          <Link href="/about">About</Link>
         </div>
       </div>
     </footer>

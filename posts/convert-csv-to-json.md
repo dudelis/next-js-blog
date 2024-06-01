@@ -78,6 +78,9 @@ security: []
 tags: []
 ```
 
+
+
+
   6. After you created the custom connector, navigate to the Code section and enable it and paste the piece of code, written below. Please, do not forget to enable code execution for the action, that we created with the swagger:
 
 [![Code editor](/blog-images/csv-to-json-04.png)](/blog-images/csv-to-json-04.png)
@@ -101,7 +104,6 @@ public class Script : ScriptBase
             response.Content = new StringContent(jsonOutput);
             return response;
         }
-
         // Handle an invalid operation ID
         response = new HttpResponseMessage(HttpStatusCode.BadRequest);
         response.Content = CreateJsonContent($"Unknown operation ID '{this.Context.OperationId}'");
@@ -114,7 +116,6 @@ public class Script : ScriptBase
         {
             string[] lines = csvText.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
             string[] headers = lines[0].Split(delimiter);
-
             var jsonArray = new List<Dictionary<string, string>>();
 
             for (int i = 1; i < lines.Length; i++)
@@ -131,12 +132,12 @@ public class Script : ScriptBase
                 }
                 jsonArray.Add(jsonObject);
             }
-
             return Newtonsoft.Json.JsonConvert.SerializeObject(jsonArray);
         }
     }
 }
 ```
+
 
   7. You can save your custom connector and test.
 
